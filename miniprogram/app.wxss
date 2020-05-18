@@ -192,4 +192,9 @@ text{
   color: #515151;
 }
 
-
+.bottom {
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  color: grey;
+}

@@ -50,28 +50,28 @@ Page({
     ],
 
     pgList: [{
-      id: 2,
+      id: 7,
       title: '第四章课后习题',
       name: "庄羽",
       classname: "算法",
       time: "2020-05-15",
       pgstatus: 2
     }, {
-      id: 2,
+      id: 6,
       title: '试卷',
       name: "周宇",
       classname: "软件工程",
       time: "2020-05-17",
       pgstatus: 2
     }, {
-      id: 1,
+      id: 7,
       title: '第三课课后习题',
       name: "周宇",
       classname: "软件工程",
       time: "2020-05-20",
       pgstatus: 1
     }, {
-      id: 1,
+      id: 5,
       title: '第四章课后习题',
       name: "周宇",
       classname: "啦啦啦",

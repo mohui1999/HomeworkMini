@@ -1,15 +1,18 @@
 <!--pages/homework/myClass/myClass.wxml-->
 
 <view class="hm-title">全部班级</view>
-<view wx:for="{{classList}}" class="homeworkCard" data-id="{{item.id}}" bindtap="toClassHomework">
+<view wx:for="{{classList}}" class="homeworkCard" data-id="{{item.class_id}}" bindtap="toClassHomework">
 
   <view class="icon-text">
     <image class="home-icon" src="/icons/homework/classname.png"></image>
-    <view class="homeworktext">{{item.classname}}</view>
+    <view class="homeworktext">{{item.class_name}}</view>
   </view>
   <view class="icon-text">
     <image class="home-icon" src="/icons/homework/teacher.png"></image>
-    <view class="homeworktext">{{item.name}}</view>
+    <view class="homeworktext">{{item.teacher_lst[0]}}</view>
   </view>
 
 </view>
+<view wx:if="{{pgList==''}}" class="bottom">
+    <text>———— 暂时没有班级哦 ————</text>
+  </view>

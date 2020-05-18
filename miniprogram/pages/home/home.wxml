@@ -35,12 +35,17 @@
     </view>
 
   </view>
+  <view wx:if="{{homeworkList==''}}" class="bottom">
+    <text>———— 暂时没有作业哦 ————</text>
+  </view>
 
 </view>
 
+
+
 <!-- <view class="hm-title">批改作业</view> -->
 <view wx:if="{{loginOrNot && degree=='JS'}}" class="login-con">
-  <view wx:for="{{pgList}}" class="homeworkCard" data-id="{{item.homework_id}}" bindtap="toDoHomework">
+  <view wx:for="{{pgList}}" class="homeworkCard" data-id="{{item.id}}" bindtap="toDoHomework">
 
     <view class="homework-lift">
       <view class="homeworkTitle">{{item.title}}</view>
@@ -69,6 +74,9 @@
 
     </view>
 
+  </view>
+  <view wx:if="{{pgList==''}}" class="bottom">
+    <text>———— 暂时没有作业哦 ————</text>
   </view>
 </view>
 

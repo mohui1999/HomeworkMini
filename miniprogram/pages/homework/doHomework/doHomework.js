@@ -7,7 +7,10 @@ Page({
   data: {
     size: 1,
     imgList: [],
-    textareaAValue:"",
+    textareaAValue: "",
+    img1: '',
+    img2: '',
+    img3: '',
 
     homeworkDetial: {
       id: 5,
@@ -32,14 +35,17 @@ Page({
     console.log("options-id");
     var id = options.id;
     console.log(id)
+    that.setData({
+      homework_id: id,
+    })
     var Sno = wx.getStorageSync("studentID");
     console.log(Sno)
-    
+
     wx.request({
       //通过接口获取数据
       url: 'https://andatong.top/wxapp/singl_homework_info',
       data: {
-        Sno: "Y21614001",
+        Sno: Sno,
         character: "student",
         homework_id: id,
       },
@@ -47,7 +53,7 @@ Page({
       header: {
         'content-type': 'application/json'
       },
-      success: function (res) {
+      success: function(res) {
         console.log(res);
         that.setData({
           homeworkDetial: res.data,
@@ -62,7 +68,7 @@ Page({
   //选图片
   ChooseImage() {
     wx.chooseImage({
-      count: 4, //默认9
+      count: 3, //默认9
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album'], //从相册选择
       success: (res) => {
@@ -109,105 +115,132 @@ Page({
   },
 
   //提交作业
-  submitanswer(e){
+  submitanswer(e) {
+    var that = this;
     console.log(e);
     var stuContext = e.currentTarget.dataset.stucontext;
     var imgList = e.currentTarget.dataset.imglist;
-    var filePath= {}
-    for(var i=0;i<imgList.length;i++){
-      if(i == 0){
-        filePath["image1"] = imgList[0];
-      } else if(i == 1){
-        filePath["image2"] = imgList[1];
-      } else if (i == 2) {
-        filePath["image3"] = imgList[2];
-      }
-      
+    wx.showLoading({
+      title: '提交中',
+    })
+    for (var i = 0; i < imgList.length; i++) {
+      wx.uploadFile({
+        url: 'https://andatong.top/wxapp/upload_img',
+        filePath: imgList[i],
+        name: "file",
+        formData: {
+          "user": "test"
+        },
+
+        success(res) {
+          console.log("success")
+          console.log(res.data)
+          var data = res.data;
+          var data = JSON.parse(data);
+          console.log(data)
+          console.log(data[0].img_path)
+          console.log("i", i)
+          if (that.data.img1 == '') {
+            that.setData({
+              img1: data[0].img_path,
+            })
+          } else if (that.data.img2 == '') {
+            that.setData({
+              img2: data[0].img_path,
+            })
+          } else if (that.data.img3 == '') {
+            that.setData({
+              img3: data[0].img_path,
+            })
+          }
+          // that.setData({
+          //   uploadsuccess: 1,
+          // })
+
+          if (imgList.length == 1 && that.data.img1 != '') {
+            that.submitall();
+          } else if (imgList.length == 2 && that.data.img1 != '' && that.data.img2 != '') {
+            that.submitall();
+          } else if (imgList.length == 3 && that.data.img1 != '' && that.data.img2 != '' && that.data.img3 != '') {
+            that.submitall();
+          }
+
+        },
+        fail: function(res) {
+
+          var data = JSON.parse(res.data);
+          console.log("fail")
+          console.log(data)
+          wx.showModal({
+            title: "图片上传失败",
+            content: "请检查网络稍后再试吧",
+            showCancel: false,
+            confirmText: "确定"
+          })
+        }
+
+      })
+
     }
+    console.log(that.data.uploadsuccess)
+    if (imgList.length == 0) {
+      that.submitall();
+
+    }
+
 
     console.log(stuContext);
     console.log(imgList);
-    wx.uploadFile({
-      url: 'https://andatong.top/wxapp/upload_img',
 
-      filePath: imgList,
-      name: "file",
-      formData: {
-        "user": "test"
+  },
+
+  submitall(e) {
+    var that = this;
+    wx.request({
+      //通过接口获取数据
+      url: 'https://andatong.top/wxapp/homework_student',
+      method: 'POST',
+      data: {
+        Sno: wx.getStorageSync('studentID'),
+        homework_id: that.data.homework_id,
+        content: that.data.textareaAValue,
+        img1: that.data.img1,
+        img2: that.data.img2,
+        img3: that.data.img3
       },
-
-      success(res) {
-        console.log("success")
-        console.log(res.data)
-        var data = res.data;
-        var data = JSON.parse(data);
-        console.log(data)
-        that.setData({
-          img_path: data[0].img_path,
-        })
-        wx.request({
-          //通过接口获取数据
-          url: 'https://lzzzzl.top/AHU_community/useraction',
-          method: 'POST',
-          data: {
-            OnsUha: wx.getStorageSync('studentID'),
-            userAvatar: getApp().globalData.userInfo.avatarUrl,
-            excerpt: that.data.textContent,
-            img: that.data.img_path,
-            wx_name: getApp().globalData.userInfo.nickName,
-            position: that.data.position,
-            choice: that.data.choice,
-          },
-          header: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          },
-          success: function (res) {
-            console.log(res);
-            if (res.statusCode == 200 && res.data.status == "success") {
-              wx.setStorageSync('autoRefreshList', "1");
-              wx.navigateBack({
-                success: function () {
-                  wx.removeStorageSync('alllocation');
-                  wx.removeStorageSync('chooseposition');
-                  wx.removeStorageSync('positionindex');
-                }
-
-              });
-
-            } else {
-              wx.showModal({
-                title: '出错啦o(╥﹏╥)o',
-                content: '请稍后再试',
-                confirmText: '知道啦',
-                showCancel: false,
-              })
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      success: function(res) {
+        console.log(res);
+        if (res.statusCode == 200 && res.data.status == "success") {
+          wx.showToast({
+            title: '提交成功',
+          })
+          wx.setStorageSync('autoRefreshList', "1");
+          wx.navigateBack({
+            success: function() {
+      
             }
-          },
-          complete: function (res) {
-            that.setData({
-              loadModal: false
-            })
-          },
-        });
 
+          });
 
-
-
+        } else {
+          wx.showModal({
+            title: '出错啦o(╥﹏╥)o',
+            content: '请稍后再试',
+            confirmText: '知道啦',
+            showCancel: false,
+          })
+        }
       },
-      fail: function (res) {
-
-        var data = JSON.parse(res.data);
-        console.log("fail")
-        console.log(data)
-        wx.showModal({
-          title: "图片上传失败",
-          content: "请检查网络稍后再试吧",
-          showCancel: false,
-          confirmText: "确定"
+      complete: function(res) {
+        that.setData({
+          loadModal: false
         })
-      }
-
-    })
+        wx.hideLoading();
+      },
+    });
   },
 
   /**
