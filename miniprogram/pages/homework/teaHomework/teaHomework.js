@@ -8,50 +8,7 @@ Page({
     size: 1,
     textareaAValue: "",
 
-    homeworkDetial: {
-      id: 5,
-      title: "课程第五章",
-      proContext: "1.字号大小。一个好的小程序UI界面,首先映入眼帘的就是页面字号大小,下面是眼睛距离与常用的字号大小关系:视距近:30cm以内字号使用:9pt(点)——12pt(点)网...2.色彩设计中讲究形与色的组合, 具体用什么主色调, 要根据小程序的类型来选择, ...3.布局排版布局, 就是小程序内各版块、图标、文字的排列。通过合理的布局, 我们能让访客...4.这些都是新人刚入行的基本小程序UI设计规范, 希望对你有帮助。",
-      teacher: "周国强",
-      classname: "软件工程",
-      time: "2020-05-15 12:00",
-      pgstatus: 2,
-      sunmitNumber: 15,
-      allNumber: 30,
-      studentStatus:[
-        {
-          studentid: "YA1717177",
-          studentname: "杨紫",
-          pgstatus:1,
-
-        },
-        {
-          studentid: "YA1712377",
-          studentname: "张云",
-          pgstatus: 2,
-          score: 90,
-        },
-        {
-          studentid: "YA1799977",
-          studentname: "杨子健",
-          pgstatus: 2,
-          score: 90,
-        },
-        {
-          studentid: "YA1717177",
-          studentname: "奥斯卡",
-          pgstatus: 1,
-
-        },
-        {
-          studentid: "YA1717177",
-          studentname: "超宇",
-          pgstatus: 1,
-
-        },
-      ]
-
-    }
+    homeworkDetial: '',
   },
 
   /**
@@ -61,8 +18,13 @@ Page({
     var that = this;
     console.log("options-id");
     var id = options.id;
+    that.setData({
+      id:id,
+    })
     console.log(id)
-
+    wx.showLoading({
+      title: '加载中……',
+    })
     wx.request({
       //通过接口获取数据
       url: 'https://andatong.top/wxapp/singl_homework_info',
@@ -82,6 +44,9 @@ Page({
         that.setData({
           homeworkDetial: res.data,
         })
+      },
+      complete: function (e) {
+        wx.hideLoading()
       }
     })
 
@@ -113,8 +78,16 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
-
+  onShow: function () {
+    var autoRefreshFlag = wx.getStorageSync("autoRefreshList");
+    var id = this.data.id;
+    if (autoRefreshFlag == 1) {
+      var ops = {
+        "id":id
+      }
+      wx.setStorageSync('autoRefreshList', '0');
+      this.onLoad(ops);
+    }
   },
 
   /**

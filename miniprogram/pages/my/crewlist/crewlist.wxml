@@ -36,7 +36,7 @@
   </view>
   <view class="crew-item">
     <image class="crew-pic" src="/icons/crew/task.png"></image>
-    <view class="crew-text">策划</view>
+    <view class="crew-text">运营</view>
   </view>
   <view class="crew-item">
     <image class="crew-pic" src="/icons/crew/college.png"></image>

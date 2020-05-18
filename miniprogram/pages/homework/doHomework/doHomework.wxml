@@ -10,7 +10,7 @@
   </view>
   <view class="icon-text">
     <image class="home-icon" src="/icons/homework/classname.png"></image>
-    <view class="homeworktext">{{homeworkDetial.classname}}</view>
+    <view class="homeworktext">{{homeworkDetial.class_name}}</view>
   </view>
   <view class="icon-text">
     <image class="home-icon" src="/icons/homework/time.png"></image>
@@ -21,10 +21,13 @@
 
 
 <!-- 已经回答的答案区域 -->
-<view wx:if="{{homeworkDetial.student_answers!=''}}" class="problem">
+<view class="problem">
   <view class="problem-title">你的回答</view>
-  <view class="problem-context">{{homeworkDetial.student_answers}}</view>
+  <view class="problem-context">{{homeworkDetial.student_answers[0].content}}</view>
   <view class=" solid{{size?'s':''}}-bottom margin-top"></view>
+   <view class="pic-con" wx:for="{{homeworkDetial.student_answers[0].image}}">
+    <image class="hm-pic" mode='aspectFit' src="{{item}}" bindtap="ViewImages" data-url="{{item}}"></image>
+  </view>
 </view>
 
 

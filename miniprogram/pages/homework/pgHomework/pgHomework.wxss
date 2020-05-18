@@ -29,3 +29,12 @@ page{
   display:flex;
   align-items: center;
 }
+.pic-con{
+  width: 100%;
+  margin: 20rpx 40rpx;
+}
+
+.hm-pic{
+  width: 600rpx;
+
+}

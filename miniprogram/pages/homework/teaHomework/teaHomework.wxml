@@ -8,16 +8,16 @@
   </view>
   <view class="icon-text">
     <image class="home-icon" src="/icons/homework/classname.png"></image>
-    <view class="homeworktext">{{homeworkDetial.classname}}</view>
+    <view class="homeworktext">{{homeworkDetial.class_name}}</view>
   </view>
   <view class="icon-text">
     <image class="home-icon" src="/icons/homework/time.png"></image>
-    <view class="homeworktext">{{homeworkDetial.created_time}}</view>
+    <view class="homeworktext">{{homeworkDetial.end_time}}</view>
   </view>
   <view class=" solid{{size?'s':''}}-bottom margin-top"></view>
 </view>
 
-<view class="cuIcon-people not-text"> 共5人提交，4人未交</view>
+<!-- <view class="cuIcon-people not-text"> 共5人提交，4人未交</view> -->
 <view wx:for="{{homeworkDetial.student_answers}}" class="homeworkCard" wx:key="index" data-an="{{item}}" bindtap="toPgHomework">
   <view class="homework-lift">
     <view class="icon-text">
@@ -26,7 +26,7 @@
     </view>
     <view class="icon-text">
       <image class="home-icon" src="/icons/homework/classname.png"></image>
-      <view class="homeworktext">{{item.studentid}}</view>
+      <view class="homeworktext">{{item.student_Sno}}</view>
     </view>
     <!-- <view class="icon-text">
         <image class="home-icon" src="/icons/homework/time.png"></image>
@@ -36,7 +36,7 @@
 
   <view class="homework-right">
     <view wx:if="{{item.status=='待完成'}}" class="home-action-nopg">{{item.status}}</view>
-    <view wx:if="{{item.status=='未批改'}}" class="home-action-nopg">{{item.status}}</view>
+    <view wx:if="{{item.status=='已完成'}}" class="home-action-nopg">未批改</view>
     <view wx:if="{{item.status=='已批改'}}" class="home-action">{{item.grade}}</view>
     <image wx:if="{{item.status!='已批改'}}" class="icons-action" src="/icons/homework/next.png"></image>
   </view>

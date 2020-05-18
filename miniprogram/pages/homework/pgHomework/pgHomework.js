@@ -49,7 +49,7 @@ Page({
   },
 
   //提交批改
-  submitanswer(e) {
+  submitscore(e) {
     var that = this;
     console.log(e);
     
@@ -70,7 +70,7 @@ Page({
         content: '分数取值请在0-100之间',
       })
     }else{
-      if (that.data.homeworkDetial.pgstatus==2){
+      if (that.data.homeworkDetial.grade!='无'){
         wx.showModal({
           title: '注意',
           content: '重新提交将覆盖上次批改情况，是否继续？',
@@ -82,7 +82,46 @@ Page({
               //点击取消,默认隐藏弹框
             } else {
               //点击确定
-              console.log("true")
+              wx.request({
+                //通过接口获取数据
+                url: 'https://andatong.top/wxapp/set_home_grade',
+                method: 'POST',
+                data: {
+                  answer_id: that.data.homeworkDetial.answer_id,
+                  grade: that.data.score,
+                  content_from_teacher: that.data.textareaAValue
+                },
+                header: {
+                  "Content-Type": "application/x-www-form-urlencoded"
+                },
+                success: function (res) {
+                  console.log(res);
+                  if (res.statusCode == 200 && res.data.status == "success") {
+                    wx.showToast({
+                      title: '提交成功',
+                    })
+                    wx.setStorageSync('autoRefreshList', "1");
+                    wx.navigateBack({
+                      success: function () {}
+
+                    });
+
+                  } else {
+                    wx.showModal({
+                      title: '出错啦o(╥﹏╥)o',
+                      content: '请稍后再试',
+                      confirmText: '知道啦',
+                      showCancel: false,
+                    })
+                  }
+                },
+                complete: function (res) {
+                  that.setData({
+                    loadModal: false
+                  })
+                  wx.hideLoading();
+                },
+              });
             }
           },
           fail: function (res) { },
@@ -91,10 +130,58 @@ Page({
         })
       }else{
         //提交
+        wx.request({
+          //通过接口获取数据
+          url: 'https://andatong.top/wxapp/set_home_grade',
+          method: 'POST',
+          data: {
+            answer_id: that.data.homeworkDetial.answer_id,
+            grade: that.data.score,
+            content_from_teacher: that.data.textareaAValue
+          },
+          header: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          success: function (res) {
+            console.log(res);
+            if (res.statusCode == 200 && res.data.status == "success") {
+              wx.showToast({
+                title: '提交成功',
+              })
+              wx.setStorageSync('autoRefreshList', "1");
+              wx.navigateBack({
+                success: function () { }
+
+              });
+
+            } else {
+              wx.showModal({
+                title: '出错啦o(╥﹏╥)o',
+                content: '请稍后再试',
+                confirmText: '知道啦',
+                showCancel: false,
+              })
+            }
+          },
+          complete: function (res) {
+            that.setData({
+              loadModal: false
+            })
+            wx.hideLoading();
+          },
+        });
+        
       }
       console.log(remarktext);
       console.log(score);
     }
+  },
+
+  ViewImage(e) {
+    wx.previewImage({
+      urls: this.data.homeworkDetial.image,
+      current: e.currentTarget.dataset.url
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -107,7 +194,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var autoRefreshFlag = wx.getStorageSync("autoRefreshFlag");
+    if (autoRefreshFlag == 1) {
+      wx.setStorageSync('jumpScheduleFlag', '0');
+      this.onLoad();
+    }
   },
 
   /**

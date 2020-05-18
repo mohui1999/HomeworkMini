@@ -12,19 +12,7 @@ Page({
     img2: '',
     img3: '',
 
-    homeworkDetial: {
-      id: 5,
-      title: "课程第五章",
-      proContext: "1.字号大小。一个好的小程序UI界面,首先映入眼帘的就是页面字号大小,下面是眼睛距离与常用的字号大小关系:视距近:30cm以内字号使用:9pt(点)——12pt(点)网...2.色彩设计中讲究形与色的组合, 具体用什么主色调, 要根据小程序的类型来选择, ...3.布局排版布局, 就是小程序内各版块、图标、文字的排列。通过合理的布局, 我们能让访客...4.这些都是新人刚入行的基本小程序UI设计规范, 希望对你有帮助。",
-      teacher: "周国强",
-      classname: "软件工程",
-      time: "2020-05-15 12:00",
-      status: 2,
-      stuContext: "更新提示：ZanUI-WeApp 现已升级为 Vant Weapp，Vant Weapp 是有赞移动端组件库 Vant 的小程序版本，两者基于相同的视觉规范，提供一致的 API 接口，助力开发者快速搭建小程序应用。仓库不再维护，请移步至 Vant Weapp 仓库.作者：一斤代码链接：来源：简书著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。",
-      stuPic: [],
-      score: 98,
-
-    }
+    homeworkDetial: ""
   },
 
   /**
@@ -40,7 +28,10 @@ Page({
     })
     var Sno = wx.getStorageSync("studentID");
     console.log(Sno)
-
+    wx.showLoading({
+      title: '加载中……',
+    })
+    
     wx.request({
       //通过接口获取数据
       url: 'https://andatong.top/wxapp/singl_homework_info',
@@ -58,6 +49,9 @@ Page({
         that.setData({
           homeworkDetial: res.data,
         })
+      },
+      complete: function () {
+        wx.hideLoading()
       }
     })
 
@@ -91,6 +85,15 @@ Page({
       current: e.currentTarget.dataset.url
     });
   },
+
+  ViewImages(e) {
+    //已提交
+    wx.previewImage({
+      urls: this.data.homeworkDetial.student_answers[0].image,
+      current: e.currentTarget.dataset.url
+    });
+  },
+
   DelImg(e) {
     wx.showModal({
       title: '删除图片',

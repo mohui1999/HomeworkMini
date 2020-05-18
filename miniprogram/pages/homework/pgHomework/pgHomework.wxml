@@ -7,17 +7,21 @@
   </view>
   <view class="icon-text">
     <image class="home-icon" src="/icons/homework/classname.png"></image>
-    <view class="homeworktext">{{homeworkDetial.studentid}}</view>
+    <view class="homeworktext">{{homeworkDetial.student_Sno}}</view>
+  </view>
+
+  <view class=" solid{{size?'s':''}}-bottom margin-top"></view>
+  <view style="height:30rpx"></view>
+  <view class="problem-title">学生回答</view>
+  <view class="problem-context">{{homeworkDetial.content}}</view>
+
+  <view class="pic-con" wx:for="{{homeworkDetial.image}}">
+    <image class="hm-pic" mode='aspectFit' src="{{item}}" bindtap="ViewImage" data-url="{{item}}"></image>
   </view>
 
   <view class=" solid{{size?'s':''}}-bottom margin-top"></view>
 
-  <view class="problem-title">学生回答</view>
-  <view class="problem-context">{{homeworkDetial.content}}</view>
-
-  <view class=" solid{{size?'s':''}}-bottom margin-top"></view>
-
-  <view wx:if="{{homeworkDetial.grade=='无'}}">
+  <view wx:if="{{homeworkDetial.grade!='无'}}">
     <view class="problem-title">分数：{{homeworkDetial.grade}}</view>
     <view class="problem-title">评语</view>
     <view class="problem-context">{{homeworkDetial.content_from_teacher}}</view>
@@ -36,7 +40,7 @@
 </view>
 
 <view class="hm-but">
-  <button class="cu-btn bg-orange round lg shadow" bindtap="submitanswer" data-remarktext="{{textareaAValue}}" data-score="{{score}}">提 交</button>
+  <button class="cu-btn bg-orange round lg shadow" bindtap="submitscore" data-remarktext="{{textareaAValue}}" data-score="{{score}}">提 交</button>
 </view>
 
 <view style="height:40rpx;"></view>

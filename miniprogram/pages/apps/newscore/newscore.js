@@ -232,7 +232,7 @@ Page({
                 }
               }
               if (same == 0) {
-                var new_xn = [score_list[x].xn]; //新获得的数据
+                var new_xn = [score_list[x].xn]; //新获得的数据 cankao
                 var old_xn = arr_xn; //之前已经获得的数据
                 var arr_xn = old_xn.concat(new_xn); //新旧数据合并
               }

@@ -10,83 +10,9 @@ Page({
     TabCur: 0,
     scrollLeft: 0,
     tabtext: ['待完成', '已完成', '已批改'],
-    homeworkList: [{
-        id: 2,
-        title: '第四章课后习题',
-        name: "庄羽",
-        classname: "算法",
-        time: "2020-05-15",
-        status: 1
-      }, {
-        id: 2,
-        title: '试卷',
-        name: "周宇",
-        classname: "软件工程",
-        time: "2020-05-17",
-        status: 1
-      }, {
-        id: 2,
-        title: '第三课课后习题',
-        name: "周宇",
-        classname: "软件工程",
-        time: "2020-05-20",
-        status: 1
-      }, {
-        id: 1,
-        title: '第四章课后习题',
-        name: "周宇",
-        classname: "啦啦啦",
-        time: "2020-05-20",
-        status: 1
-      }, {
-        id: 1,
-        title: '阿拉啦啦啦',
-        name: "周宇",
-        classname: "软件工程",
-        time: "2020-05-20",
-        status: 1
-      }
+    homeworkList: [],
 
-    ],
-
-    pgList: [{
-      id: 7,
-      title: '第四章课后习题',
-      name: "庄羽",
-      classname: "算法",
-      time: "2020-05-15",
-      pgstatus: 2
-    }, {
-      id: 6,
-      title: '试卷',
-      name: "周宇",
-      classname: "软件工程",
-      time: "2020-05-17",
-      pgstatus: 2
-    }, {
-      id: 7,
-      title: '第三课课后习题',
-      name: "周宇",
-      classname: "软件工程",
-      time: "2020-05-20",
-      pgstatus: 1
-    }, {
-      id: 5,
-      title: '第四章课后习题',
-      name: "周宇",
-      classname: "啦啦啦",
-      time: "2020-05-20",
-      pgstatus: 1
-    }, {
-      id: 1,
-      title: '阿拉啦啦啦',
-      name: "周宇",
-      classname: "软件工程",
-      time: "2020-05-20",
-      pgstatus: 1
-    }
-
-    ],
+    pgList: [],
 
   },
 
@@ -116,6 +42,9 @@ Page({
 
   getList(e){
     var that = this;
+    wx.showLoading({
+      title: '加载中……',
+    })
     if(that.data.degree=="BKS"){
       //学生
       if (that.data.TabCur == 0) {
@@ -123,7 +52,7 @@ Page({
       } else if (that.data.TabCur == 1) {
         var status = "已完成"
       } else if (that.data.TabCur == 2) {
-        var status = "已批改其中之一"
+        var status = "已批改"
       }
       var Sno = wx.getStorageSync("studentID");
       console.log(Sno)
@@ -146,6 +75,9 @@ Page({
           that.setData({
             homeworkList: res.data.homework_lst,
           })
+        },
+        complete:function(){
+          wx.hideLoading()
         }
       })
     }else if(that.data.degree=="JS"){
@@ -155,7 +87,7 @@ Page({
         //通过接口获取数据
         url: 'https://andatong.top/wxapp/homework_teacher',
         data: {
-          tno: tno,
+          Tno: tno,
         },
         method: 'GET',
         header: {
@@ -163,31 +95,16 @@ Page({
         },
         success: function (res) {
           console.log(res);
-          // var new_mail = res.data; //新获得的数据
-          // var old_mail = that.data.mail; //之前已经获得的数据
-          // var arr_mail = old_mail.concat(new_mail); //新旧数据合并
-          // that.setData({
-          //   mail: arr_mail,
-          // })
+
+          that.setData({
+            pgList: res.data.homework_lst,
+          })
+        },
+        complete: function () {
+          wx.hideLoading()
         }
       })
     }
-    
-
-
-    // wx.cloud.callFunction({
-    //   name: 'hmlist',
-    //   data: {},
-    //   success: res => {
-    //     console.log(res)
-        
-    //   },
-    //   fail: err => {
-    //     console.error('[云函数] [login] 调用失败', err)
-        
-    //   }
-    // })
-    
 
   },
 
@@ -245,7 +162,7 @@ Page({
   onShow: function() {
     var autoRefreshFlag = wx.getStorageSync("autoRefreshFlag");
     if (autoRefreshFlag == 1) {
-      wx.setStorageSync('jumpScheduleFlag', '0');
+      wx.setStorageSync('autoRefreshFlag', '0');
       this.onLoad();
     }
   },

@@ -5,51 +5,157 @@ Page({
    * 页面的初始数据
    */
   data: {
-    homeworkList: [{
-      id: 1,
-      title: '第四章课后习题',
-      name: "庄羽",
-      classname: "算法",
-      time: "2020-05-15",
-      status: 2
-    }, {
-      id: 1,
-      title: '试卷',
-      name: "周宇",
-      classname: "软件工程",
-      time: "2020-05-17",
-      status: 1
-    }, {
-      id: 1,
-      title: '第三课课后习题',
-      name: "周宇",
-      classname: "软件工程",
-      time: "2020-05-20",
-      status: 3,
-      score: 100,
-    }, {
-      id: 1,
-      title: '第四章课后习题',
-      name: "周宇",
-      classname: "啦啦啦",
-      time: "2020-05-20",
-      status: 1
-    }, {
-      id: 1,
-      title: '阿拉啦啦啦',
-      name: "周宇",
-      classname: "软件工程",
-      time: "2020-05-20",
-      status: 1
-    }
-
-    ],
+    homeworkList: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
+    that.setData({
+      degree: wx.getStorageSync("degree")
+    })
+    that.getList();
+  },
+
+  getList(e) {
+    var that = this;
+    wx.showLoading({
+      title: '加载中……',
+    })
+    if (that.data.degree == "BKS") {
+      //学生
+      var Sno = wx.getStorageSync("studentID");
+      console.log(Sno)
+      wx.request({
+        //通过接口获取数据
+        url: 'https://andatong.top/wxapp/homework_student',
+        data: {
+          Sno: Sno,
+          status: "待完成"
+        },
+        method: 'GET',
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          console.log(res);
+          var new_list = res.data.homework_lst; //新获得的数据
+          var old_list = that.data.homeworkList; //之前已经获得的数据
+          var arr_list = old_list.concat(new_list); //新旧数据合并
+          that.setData({
+            homeworkList: arr_list,
+          })
+
+          //已完成
+          wx.request({
+          //通过接口获取数据
+          url: 'https://andatong.top/wxapp/homework_student',
+            data: {
+            Sno: Sno,
+              status: "已完成"
+          },
+          method: 'GET',
+            header: {
+            'content-type': 'application/json'
+          },
+          success: function (res) {
+            console.log(res);
+            var new_list = res.data.homework_lst; //新获得的数据
+            var old_list = that.data.homeworkList; //之前已经获得的数据
+            var arr_list = old_list.concat(new_list); //新旧数据合并
+            that.setData({
+              homeworkList: arr_list,
+            })
+            //已批改
+            wx.request({
+              //通过接口获取数据
+              url: 'https://andatong.top/wxapp/homework_student',
+              data: {
+                Sno: Sno,
+                status: "已批改"
+              },
+              method: 'GET',
+              header: {
+                'content-type': 'application/json'
+              },
+              success: function (res) {
+                console.log(res);
+                var new_list = res.data.homework_lst; //新获得的数据
+                var old_list = that.data.homeworkList; //之前已经获得的数据
+                var arr_list = old_list.concat(new_list); //新旧数据合并
+                that.setData({
+                  homeworkList: arr_list,
+                })
+
+              },
+              complete: function () {
+                wx.hideLoading()
+              }
+            })
+
+          },
+          complete: function () {
+            
+          }
+        })
+
+        },
+        complete: function () {
+         
+        }
+      })
+    } else if (that.data.degree == "JS") {
+      //教师
+      var tno = wx.getStorageSync("studentID")
+      wx.request({
+        //通过接口获取数据
+        url: 'https://andatong.top/wxapp/homework_teacher',
+        data: {
+          Tno: tno,
+        },
+        method: 'GET',
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          console.log(res);
+
+          that.setData({
+            homeworkList: res.data.homework_lst,
+          })
+        },
+        complete: function () {
+          wx.hideLoading()
+        }
+      })
+    }
+
+
+
+  },
+
+  // 跳转作业
+  toDoHomework(e) {
+    console.log(e);
+    var id = e.currentTarget.dataset.id
+    if (this.data.degree == "BKS") {
+      wx.navigateTo({
+        url: '/pages/homework/doHomework/doHomework?id=' + id,
+        success: function (res) { },
+        fail: function (res) { },
+        complete: function (res) { },
+      })
+    } else if (this.data.degree == "JS") {
+      wx.navigateTo({
+        url: '/pages/homework/teaHomework/teaHomework?id=' + id,
+        success: function (res) { },
+        fail: function (res) { },
+        complete: function (res) { },
+      })
+
+    }
 
   },
 

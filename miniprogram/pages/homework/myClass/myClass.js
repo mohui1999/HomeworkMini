@@ -5,42 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    classList: [{
-        id: 1,
-        name: "庄羽",
-        classname: "算法",
-        status: 1
-      }, {
-        id: 1,
-        title: '试卷',
-        name: "周宇",
-        classname: "软件工程",
-        time: "2020-05-17",
-        status: 1
-      }, {
-        id: 1,
-        title: '第三课课后习题',
-        name: "周宇",
-        classname: "软件工程",
-        time: "2020-05-20",
-        status: 1
-      }, {
-        id: 1,
-
-        name: "周宇",
-        classname: "啦啦啦",
-
-        status: 1
-      }, {
-        id: 1,
-
-        name: "周宇",
-        classname: "软件工程",
-
-        status: 1
-      }
-
-    ],
+    classList: [],
 
   },
 
@@ -49,6 +14,9 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
+    wx.showLoading({
+      title: '加载中……',
+    })
 
     if (wx.getStorageSync("degree") == "BKS") {
       wx.request({
@@ -72,6 +40,10 @@ Page({
           that.setData({
             classList: res.data.class_lst,
           })
+        },
+
+        complete: function() {
+          wx.hideLoading()
         }
       })
     } else if (wx.getStorageSync("degree") == "JS") {
@@ -96,6 +68,10 @@ Page({
           that.setData({
             classList: res.data.class_lst,
           })
+        },
+
+        complete: function() {
+          wx.hideLoading()
         }
       })
     }
