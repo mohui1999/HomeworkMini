@@ -1,0 +1,42 @@
+<!--pages/homework/pgHomework/pgHomework.wxml-->
+<!-- 已经回答的答案区域 -->
+<view class="problem">
+  <view class="icon-text">
+    <image class="home-icon" src="/icons/homework/teacher.png"></image>
+    <view class="homeworktext">{{homeworkDetial.student_name}}</view>
+  </view>
+  <view class="icon-text">
+    <image class="home-icon" src="/icons/homework/classname.png"></image>
+    <view class="homeworktext">{{homeworkDetial.studentid}}</view>
+  </view>
+
+  <view class=" solid{{size?'s':''}}-bottom margin-top"></view>
+
+  <view class="problem-title">学生回答</view>
+  <view class="problem-context">{{homeworkDetial.content}}</view>
+
+  <view class=" solid{{size?'s':''}}-bottom margin-top"></view>
+
+  <view wx:if="{{homeworkDetial.grade=='无'}}">
+    <view class="problem-title">分数：{{homeworkDetial.grade}}</view>
+    <view class="problem-title">评语</view>
+    <view class="problem-context">{{homeworkDetial.content_from_teacher}}</view>
+
+    <view class=" solid{{size?'s':''}}-bottom margin-top"></view>
+  </view>
+
+</view>
+
+<view class="cu-form-group margin-top">
+  <view class="title">分数</view>
+  <input placeholder="0-100" maxlength="3" type="number" bindinput="numberareaAInput"></input>
+</view>
+<view class="cu-form-group margin-top">
+  <textarea maxlength="-1" style="height:400rpx" disabled="{{modalName!=null}}" bindinput="textareaAInput" placeholder="此处输入你的评语"></textarea>
+</view>
+
+<view class="hm-but">
+  <button class="cu-btn bg-orange round lg shadow" bindtap="submitanswer" data-remarktext="{{textareaAValue}}" data-score="{{score}}">提 交</button>
+</view>
+
+<view style="height:40rpx;"></view>

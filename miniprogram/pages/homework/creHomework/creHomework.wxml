@@ -1,0 +1,39 @@
+<!--pages/homework/creHomework/creHomework.wxml-->
+<view class="cu-form-group margin-top">
+  <textarea maxlength="-1" style="height:100rpx" disabled="{{modalName!=null}}" bindinput="titleareaAInput" placeholder="作业标题"></textarea>
+</view>
+<view class="cu-form-group margin-top">
+  <textarea maxlength="-1" style="height:400rpx" disabled="{{modalName!=null}}" bindinput="textareaAInput" placeholder="作业详情"></textarea>
+</view>
+
+<view class="cu-form-group margin-top">
+  <view class="title">选择班级</view>
+  <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+    <view class="picker">
+      {{index?picker[index]:'选择班级'}}
+    </view>
+  </picker>
+</view>
+
+<view class="cu-form-group">
+  <view class="title">截止日期</view>
+  <picker mode="date" value="{{date}}" start="2015-09-01" end="2050-09-01" bindchange="DateChange">
+    <view class="picker">
+      {{date}}
+    </view>
+  </picker>
+</view>
+<view class="cu-form-group">
+  <view class="title">截止时间</view>
+  <picker mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="TimeChange">
+    <view class="picker">
+      {{time}}
+    </view>
+  </picker>
+</view>
+<view style="height:40rpx;"></view>
+<view class="hm-but">
+  <button class="cu-btn bg-orange round lg shadow" bindtap="send" data-remarktext="{{textareaAValue}}" data-score="{{score}}">提 交</button>
+</view>
+
+<view style="height:40rpx;"></view>

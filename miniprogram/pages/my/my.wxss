@@ -1,0 +1,304 @@
+page {
+  width: 100%;
+  height: 100%;
+  background-color: #F4F4F4;
+}
+
+.my{
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.headLine{
+  display: flex;
+  flex-direction: row;
+  height: 130rpx;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.searchIcon{
+    height: 40rpx;
+    width: 40rpx;
+    margin-left: 25rpx;
+    margin-top: 60rpx;
+}
+.line {
+  height: 2rpx;
+  width: 100%;
+  background: lightgray;
+}
+.lightline {
+  height: 2rpx;
+  margin-left: 115rpx;
+  width: 100%;
+  background: #F4F4F4;
+}
+.first {
+  
+  width: 100%;
+  display: flex;
+
+}
+.second {
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  margin-top: 41rpx;
+  
+}
+.third {
+  background-color: white;
+  width: 100%;
+  margin-top: 30rpx;
+}
+
+.my-item {
+  padding: 34rpx 40rpx 29rpx 30rpx;
+  font-size: 32rpx;
+  color: #515151;
+  flex: 4;
+  text-align: left;
+  align-content: left;
+  
+}
+.user-section {
+  margin: 55rpx auto 20rpx 120rpx;
+}
+.user-name {
+  font-size: 50rpx;
+  font-weight: 600;
+  color: black;
+  width: 260rpx;
+  word-break:break-all;
+
+}
+.user-major {
+  font-size: 30rpx;
+  float: right;
+}
+.user-avatar {
+  height: 160rpx;
+  width: 160rpx;
+  border-radius: 50%;
+  margin: 20rpx 120rpx 20rpx auto;
+}
+.user-button {
+  background: white;
+  border: 1rpx solid #C0C0C0;
+}
+
+.icon {
+  width: 60rpx;
+  height: 60rpx;
+  margin-top: 24rpx;
+  
+}
+
+.icon2{
+  width: 16rpx;
+  height: 30rpx;
+  margin-top: 40rpx;
+  right: 20rpx;
+  
+}
+
+
+.extend{
+  background-color: white;
+  
+  width: 100%;
+  margin-top: 30rpx;
+  
+  
+}
+
+.buttonContainer{
+  display: flex;
+  height:100rpx;
+  width: 750rpx;
+  background-color: transparent;
+  padding-right: 40rpx;
+}
+
+button::after{
+  border: none;
+}
+
+
+/*
+加入的作业有关的框框
+*/
+.dt-con{
+  height: 160rpx;
+  display: flex;
+  margin-top: 30rpx;
+}
+
+.allsend-con{
+  flex: 3;
+  border-top-right-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+  /* background-color: #57c994; */
+  background-image: url(http://xiemenglei.cn/wp-content/uploads/2019/11/allsend.jpg);
+  display: flex;
+  margin-right: 30rpx;
+}
+
+.top-con{
+  
+  background-image: url(http://xiemenglei.cn/wp-content/uploads/2019/11/tops.jpg);
+}
+
+.message-con{
+  flex: 3;
+  border-bottom-left-radius:10rpx;
+  border-top-left-radius:10rpx;
+  background-image:url(http://xiemenglei.cn/wp-content/uploads/2019/11/mseesge.jpg);
+  display: flex;
+  margin-right: 0rpx;
+}
+
+.allsend-img{
+  height: 100rpx;
+  width: 100rpx;
+  margin: 30rpx 0rpx 30rpx 30rpx;
+ 
+}
+
+.message-img{
+  height: 100rpx;
+  width: 100rpx;
+  margin: 30rpx 10rpx;
+ 
+}
+
+.dt-text{
+  color: white;
+  font-size: 35rpx;
+  margin: 60rpx 30rpx 60rpx 30rpx;
+  text-align: center;
+  flex: 1;
+}
+
+.custom{
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 45px;
+  z-index: 999;
+  text-align: center;
+}
+.custom-text-con{
+  padding-top: 25rpx; 
+}
+.custom-text{
+  color: #fff;
+  font-size: 34rpx;
+  font-weight: 500;
+  max-width: 280rpx;
+}
+.empty_custom{
+  height: 45px;
+  width: 100%;
+}
+
+.custom-back{
+  background-size: cover;
+}
+/* 头像 */
+
+.userinfo, .uploader, .tunnel {
+  margin-top: 40rpx;
+  height: 140rpx;
+  width: 100%;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-left: none;
+  border-right: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: all 300ms ease;
+}
+
+.userinfo {
+  padding-left: 120rpx;
+}
+
+.userinfo-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+  background-size: cover;
+  background-color: white;
+}
+
+.userinfo-avatar[size] {
+  width: 100rpx;
+}
+
+
+.userinfo-avatar:after {
+  border: none;
+}
+
+.userinfo-nickname {
+  font-size: 32rpx;
+  color: #007aff;
+  background-color: white;
+  background-size: cover;
+  text-align: left;
+  padding-left: 0;
+  margin-left: 10px;
+}
+
+.userinfo-nickname::after {
+  border: none;
+}
+
+.userinfo-nickname-wrapper {
+  flex: 1;
+}
+
+.homeworkCard{
+  background-color: white;
+  border-radius: 20rpx;
+  margin: 40rpx 20rpx;
+  padding: 30rpx;
+  display: flex;
+  
+}
+
+.my-card{
+  width: 100%;
+  margin: 5rpx 0;
+  padding: 20rpx 50rpx;
+  background-color: white;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+
+}
+
+.my-pic{
+  width: 60rpx;
+  height: 60rpx;
+  margin: 0 50rpx 0 0;
+}
+
+.my-text{
+  font-size: 35rpx;
+  color: #515151;
+  flex: 1;
+}
+
+.my-icon{
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 100rpx;
+}

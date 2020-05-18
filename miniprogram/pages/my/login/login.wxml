@@ -1,0 +1,34 @@
+<!--pages/my/login/login.wxml-->
+<view class="jw-title">教务认证</view>
+
+<view class="item">
+  <view class="textContainer">学号</view>
+  <input class="inputContainer" value="{{lastID}}" placeholder="请输入学号" confirm-type="next" bindblur="getID" />
+</view>
+<view class="item">
+  <view class="textContainer">密码</view>
+  <input class="inputContainer" type="{{show}}" value="{{lastPW}}" placeholder="请输入教务密码" confirm-type="done" maxlength='16' bindblur="getPW" bindinput='getPW' > </input>
+  <image class='showImg' bindtap='showPassword' src="{{isShow ? '/icons/JW/open.png' : '/icons/JW/close.png'}}"></image>
+ 
+</view>
+
+<radio-group  bindchange="radiochange">
+<view class="jw-radios" wx:if="{{degreechoose=='JS'}}">
+  <radio value='BKS' class="jw-radio" >学生</radio>
+  <radio value='JS' class="jw-radio" checked>教师</radio>
+</view>
+<view class="jw-radios" wx:else>
+  <radio value='BKS' class="jw-radio"  checked>学生</radio>
+  <radio value='JS' class="jw-radio" >教师</radio>
+</view>
+  
+</radio-group>
+
+<view class="buttonContainer" bindtap="getSchedule">认 证</view>
+
+<!-- 加载模态框 -->
+<view class='cu-load load-modal' wx:if="{{loadModal}}">
+  <!-- <view class='cuIcon-emojifill text-orange'></view> -->
+  <image src='/icons/community/cloud.png' class='png' mode='aspectFit'></image>
+  <view class='gray-text'>认证中...</view>
+</view>

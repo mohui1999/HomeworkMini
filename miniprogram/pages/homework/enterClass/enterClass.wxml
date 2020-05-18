@@ -1,0 +1,13 @@
+<!--pages/homework/enterClass/enterClass.wxml-->
+<view class="jw-title">加入班级</view>
+
+<view class="cu-form-group margin-top">
+  <view class="title">班级码</view>
+  <input placeholder="输入班级码" maxlength="20" bindinput="numberareaAInput"></input>
+</view>
+
+<view style="height:200rpx;"></view>
+
+<view class="hm-but">
+  <button class="cu-btn bg-green round lg shadow" bindtap="enter">加 入</button>
+</view>

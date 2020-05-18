@@ -1,0 +1,44 @@
+<!--pages/homework/teaHomework/teaHomework.wxml-->
+<view class="problem">
+  <view class="problem-title">{{homeworkDetial.title}}</view>
+  <view class="problem-context">{{homeworkDetial.content}}</view>
+  <view class="icon-text">
+    <image class="home-icon" src="/icons/homework/teacher.png"></image>
+    <view class="homeworktext">{{homeworkDetial.teacher}}</view>
+  </view>
+  <view class="icon-text">
+    <image class="home-icon" src="/icons/homework/classname.png"></image>
+    <view class="homeworktext">{{homeworkDetial.classname}}</view>
+  </view>
+  <view class="icon-text">
+    <image class="home-icon" src="/icons/homework/time.png"></image>
+    <view class="homeworktext">{{homeworkDetial.created_time}}</view>
+  </view>
+  <view class=" solid{{size?'s':''}}-bottom margin-top"></view>
+</view>
+
+<view class="cuIcon-people not-text"> 共5人提交，4人未交</view>
+<view wx:for="{{homeworkDetial.student_answers}}" class="homeworkCard" wx:key="index" data-an="{{item}}" bindtap="toPgHomework">
+  <view class="homework-lift">
+    <view class="icon-text">
+      <image class="home-icon" src="/icons/homework/teacher.png"></image>
+      <view class="homeworktext">{{item.student_name}}</view>
+    </view>
+    <view class="icon-text">
+      <image class="home-icon" src="/icons/homework/classname.png"></image>
+      <view class="homeworktext">{{item.studentid}}</view>
+    </view>
+    <!-- <view class="icon-text">
+        <image class="home-icon" src="/icons/homework/time.png"></image>
+        <view class="homeworktext">{{item.time}}</view>
+      </view> -->
+  </view>
+
+  <view class="homework-right">
+    <view wx:if="{{item.status=='待完成'}}" class="home-action-nopg">{{item.status}}</view>
+    <view wx:if="{{item.status=='未批改'}}" class="home-action-nopg">{{item.status}}</view>
+    <view wx:if="{{item.status=='已批改'}}" class="home-action">{{item.grade}}</view>
+    <image wx:if="{{item.status!='已批改'}}" class="icons-action" src="/icons/homework/next.png"></image>
+  </view>
+
+</view>

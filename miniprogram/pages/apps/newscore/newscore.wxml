@@ -1,0 +1,80 @@
+<!--pages/apps/allscore/allscore.wxml-->
+<view class="score-container">
+  <view class="">
+    <image class="score-img" src="http://xiemenglei.cn/wp-content/uploads/2020/01/20200116133422.png" mode="aspectFit"></image>
+  </view>
+
+  <view class="">
+    <view class="header"></view>
+    <view class="info layout-row layout-space-around-start">
+      <picker style="width:60%" range="{{years}}" bindchange="input_type_year" data-index="{{index}}">
+        <view class="layout-row layout-start-center" style="width:100%;;">
+          <text class="text-caption">学年:</text>
+          <view class="type layout-row layout-space-between-center;">
+            <text class="text-body2">{{year}}</text>
+            <image src="/icon/score-down.png" class="image"></image>
+          </view>
+        </view>
+      </picker>
+      <picker style="width:40%" range="{{terms}}" bindchange="input_type_term" data-index="{{index}}">
+        <view class="layout-row layout-start-center" style="width:100%;;">
+          <text class="text-caption">学期:</text>
+          <view class="type layout-row layout-space-between-center;">
+            <text class="text-body2">{{term}}</text>
+            <image src="/icon/score-down.png" class="image"></image>
+          </view>
+        </view>
+      </picker>
+      <view class="score-head">
+        <view class="GPA_info">
+          <text class="GPA-left">学期绩点</text>
+          <text class="GPA">{{score_list[select].xq_jidian}}</text>
+        </view>
+        <!-- 中间分割线 -->
+        <view class="line_column"></view>
+        <view class="GPA_info">
+          <text class="GPA-right">全程绩点：{{score_list[select].zongjidian}}</text>
+          <text class="GPA-right">学年绩点：{{score_list[select].xn_jidian}}</text>
+        </view>
+      </view>
+
+      <view class="score-reload-con">
+        <image class="score-reload" bindtap="score_reload" src="/icon/score-reload.png"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 具体成绩信息 -->
+  <!-- <view class="detailContainer" bindtap='toAll'>
+    <view>点我查看所有成绩</view>
+  </view> -->
+
+  <view wx:if="{{remind}}" class="card-content layout-column layout-center">
+    <view clas="text-caption">{{remind}}</view>
+  </view>
+  <view wx:else class="card">
+    <!-- <view class="card-head">
+      <text class="kcxq">课 程 详 情</text>
+    </view> -->
+    <view class="score_info" wx:for="{{score_list[select].grade_list}}">
+      <view class="info2">
+        <text style="margin-bottom:10rpx;">{{item.kcmc}}</text>
+        <text>{{item.kcxz}} / {{item.xf}}</text>
+      </view>
+      <view class="info2">
+        <text style="margin-bottom:10rpx;">{{item.grade}}</text>
+        <text>{{item.jd}}</text>
+      </view>
+    </view>
+    <view class="score_info" style="font-size: 27rpx;text-align: center;align-items: center;" wx:if="{{score_list[select].grade_list == undefined}}">本学期暂无成绩哦(*^▽^*)</view>
+  </view>
+  <view wx:if="{{select==-1}}" class="score-notice">↑↑↑请选择学年与学期喔↑↑↑</view>
+</view>
+
+<!-- 
+加载模态框 -->
+<view class='cu-load load-modal' wx:if="{{loadModal}}">
+  <!-- <view class='cuIcon-emojifill text-orange'></view> -->
+  <image src='/icons/community/cloud.png' class='png' mode='aspectFit'></image>
+  <view class='gray-text'>成绩加载中</view>
+</view>

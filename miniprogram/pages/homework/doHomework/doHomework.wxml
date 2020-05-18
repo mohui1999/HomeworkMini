@@ -1,0 +1,69 @@
+<!--pages/homework/doHomework/doHomework.wxml-->
+
+<!-- 题目区域 -->
+<view class="problem">
+  <view class="problem-title">{{homeworkDetial.title}}</view>
+  <view class="problem-context">{{homeworkDetial.content}}</view>
+  <view class="icon-text">
+    <image class="home-icon" src="/icons/homework/teacher.png"></image>
+    <view class="homeworktext">{{homeworkDetial.teacher}}</view>
+  </view>
+  <view class="icon-text">
+    <image class="home-icon" src="/icons/homework/classname.png"></image>
+    <view class="homeworktext">{{homeworkDetial.classname}}</view>
+  </view>
+  <view class="icon-text">
+    <image class="home-icon" src="/icons/homework/time.png"></image>
+    <view class="homeworktext">{{homeworkDetial.end_time}}</view>
+  </view>
+  <view class=" solid{{size?'s':''}}-bottom margin-top"></view>
+</view>
+
+
+<!-- 已经回答的答案区域 -->
+<view wx:if="{{homeworkDetial.student_answers!=''}}" class="problem">
+  <view class="problem-title">你的回答</view>
+  <view class="problem-context">{{homeworkDetial.student_answers}}</view>
+  <view class=" solid{{size?'s':''}}-bottom margin-top"></view>
+</view>
+
+
+<!-- 回答区域 -->
+
+<view class="problem">
+  <view class="problem-title">作答区</view>
+  <view class="cu-bar bg-white margin-top">
+    <view class="action">
+      图片上传
+    </view>
+    <view class="action">
+      {{imgList.length}}/3
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <view class="grid col-3 grid-square flex-sub">
+      <view class="bg-img" wx:for="{{imgList}}" wx:key="index" data-index="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+        <image src='{{imgList[index]}}' mode='aspectFill'></image>
+        <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+          <text class="cuIcon-close"></text>
+        </view>
+      </view>
+      <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+        <text class="cuIcon-cameraadd"></text>
+      </view>
+    </view>
+  </view>
+  
+  <view class="cu-form-group margin-top">
+    <textarea maxlength="-1" style="height:400rpx" disabled="{{modalName!=null}}" bindinput="textareaAInput" placeholder="此处输入你的答案"></textarea>
+  </view>
+
+
+
+  <view class="hm-but">
+    <button class="cu-btn bg-green round lg shadow" bindtap="submitanswer" data-stucontext="{{textareaAValue}}" data-imglist="{{imgList}}">提 交</button>
+  </view>
+
+
+
+</view>

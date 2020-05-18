@@ -1,0 +1,31 @@
+/* pages/homework/pgHomework/pgHomework.wxss */
+@import "/plus/wxss/weui.wxss";
+@import "/plus/colorui/main.wxss";
+@import "/plus/colorui/icon.wxss";
+@import "/pages/home/home.wxss";
+@import "/pages/homework/doHomework/doHomework.wxss";
+
+page{
+  background-color: white;
+}
+
+.problem-context{
+  margin-top: 20rpx;
+}
+
+
+.homeworktext{
+  color: #636363;
+  font-size: 30rpx;
+}
+
+.home-icon{
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+}
+
+.icon-text{
+  display:flex;
+  align-items: center;
+}

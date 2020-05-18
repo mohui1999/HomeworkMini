@@ -1,0 +1,25 @@
+/* pages/homework/enterClass/enterClass.wxss */
+@import "/plus/colorui/main.wxss";
+@import "/plus/colorui/icon.wxss";
+
+page{
+  background-color: white;
+}
+
+.jw-title{
+  background-color: white;
+  font-size: 60rpx;
+  text-align: center;
+  align-items: center;
+  padding-top: 160rpx;
+  padding-bottom: 180rpx;
+  letter-spacing: 8rpx;
+  font-weight: lighter;
+  
+}
+
+.hm-but{
+  display: flex;
+  align-content: center;
+  justify-items: center;
+}

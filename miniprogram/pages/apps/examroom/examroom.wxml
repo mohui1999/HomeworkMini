@@ -1,0 +1,82 @@
+<!--pages/apps/score/score.wxml-->
+<!-- 学号密码登录界面 -->
+<view wx:if="{{show_login}}">
+  <form bindsubmit="formSubmit" class="login_container">
+    <view class="row">
+      <text>学号：</text>
+      <input type="text" name="number" placeholder="请输入学号" />
+    </view>
+    <view class="row">
+      <text>密码：</text>
+      <input password="true" name="password" placeholder="请输入教务系统查询密码" />
+    </view>
+    <button class="submit" form-type="submit">绑定</button>
+  </form>
+  <view class="protocol_container">
+    <text>绑定前请先阅读并同意</text>
+    <text>《账户信息隐私协议》</text>
+  </view>
+</view>
+
+<view wx:else>
+  <scroll-view scroll-y>
+  <image class="emptyimg" src="http://xiemenglei.cn/wp-content/uploads/2020/05/examroom.png" mode="aspectFit"></image>
+
+    <view class="GPA_container">
+      <view style="display: flex;flex-direction: column; margin-left: 20rpx;width: 310rpx;">
+        <view class="headTittle">距离</view>
+        <view wx:for="{{examSoon}}" style="font-size: 25rpx;margin-top: 10rpx;margin-left: 25rpx;">{{item}}</view>
+      </view>
+      <view style="width: 2rpx;background-color: #e6e6e6"></view>
+      <view style="display: flex;flex-direction: column; margin-left: 40rpx;">
+        <view class="headTittle">还有</view>
+        <view style="display: flex;">
+          <view style="font-size: 112rpx;color: #d66565;margin-left: {{daySoon<10?90:55}}rpx;">{{daySoon}}</view>
+          <view style="font-size: 23rpx;margin-top: 115rpx;margin-left: 20rpx;">天呦</view>
+        </view>
+      </view>
+      <!--<text style='font-size: 35rpx;'> 考试场地 </text>-->
+      <image src="/icon/refresh.png" class="refresh" bindtap="refresh"></image>
+    </view>
+    <view class="tops_score_info">
+      <view class="top_course_info" style="font-size: 30rpx;">课程名</view>
+      <view class="info" style="font-size: 30rpx;">考试时间</view>
+      <view class="info" style="font-size: 30rpx;">考试地点</view>
+      <view class="info" style="font-size: 30rpx;">座位号</view>
+    </view>
+
+    <view class="scores_container">
+      <view class="score_info" wx:for="{{examroom}}" style="color: {{index<boundary?'#babcbb':'black'}}" bindtouchstart="ontap" bindtouchend="notontap" data-index="{{index}}">
+        <view class="course_info">
+          <text>{{item.KCMC}}</text>
+        </view>
+        <view class="info">
+          <text>{{item.KSSJ}}</text>
+        </view>
+        <view class="position">
+          <text>{{item.JSMC}}</text>
+        </view>
+        <view class="site">
+          <text>{{item.ZWH}}</text>
+        </view>
+      </view>
+    </view>
+    <image class="share" src="/icon/share.png">></image>
+    <button class="shareButton" open-type="share" style="display:flex" bindtap="onShare">
+      <image class="share" src="/icon/share.png">></image>
+    </button>
+    <view style="text-align:center;font-size:25rpx;">仅供参考，请以教务为准！</view>
+  </scroll-view>
+</view>
+<view wx:if="{{floatWindowFlag}}" class="floatWindow">
+  <!-- <view>{{offsetHours}}:{{offsetMinutes}}:{{offsetSeconds}}</view> -->
+</view>
+<view wx:if="{{floatWindowFlag}}" class="floatText">{{offsetDays}}</view>
+
+
+<!-- 加载模态框 -->
+<view class='cu-load load-modal' wx:if="{{loadModal}}">
+  <!-- <view class='cuIcon-emojifill text-orange'></view> -->
+  <image src='/icons/community/cloud.png' class='png' mode='aspectFit'></image>
+  <view class='gray-text'>考场加载中</view>
+</view>

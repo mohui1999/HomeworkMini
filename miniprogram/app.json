@@ -1,0 +1,65 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/homework/homework",
+    "pages/homework/doHomework/doHomework",
+    "pages/homework/allHomework/allHomework",
+    "pages/homework/teaHomework/teaHomework",
+    "pages/homework/pgHomework/pgHomework",
+    "pages/homework/creHomework/creHomework",
+    "pages/homework/myClass/myClass",
+    "pages/homework/enterClass/enterClass",
+
+    "pages/apps/apps",
+    "pages/apps/newscore/newscore",
+    "pages/apps/examroom/examroom",
+    "pages/apps/classroom/classroom",
+
+    "pages/index/index",
+    "pages/openapi/openapi",
+    "pages/openapi/serverapi/serverapi",
+    "pages/openapi/callback/callback",
+    "pages/openapi/cloudid/cloudid",
+
+    "pages/my/my",
+    "pages/my/login/login",
+    "pages/my/set/set",
+    "pages/my/crewlist/crewlist",
+    "pages/discover/discover"
+  ],
+
+  "tabBar": {
+    "color": "#515151",
+    "selectedColor": "#515151",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "作业",
+        "iconPath": "/icons/tab/schedule_off.png",
+        "selectedIconPath": "/icons/tab/schedule_on.png"
+      },
+      {
+        "pagePath": "pages/discover/discover",
+        "text": "发现",
+        "iconPath": "/icons/tab/discovery_off.png",
+        "selectedIconPath": "/icons/tab/discovery_on.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我",
+        "iconPath": "/icons/tab/my_off.png",
+        "selectedIconPath": "/icons/tab/my_on.png"
+      }
+    ]
+  },
+
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

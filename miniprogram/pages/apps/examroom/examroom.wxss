@@ -1,0 +1,257 @@
+/* pages/apps/hiddenscore/hiddenscore.wxss *//* pages/apps/score/score.wxss */
+@import '/plus/wxss/weui.wxss';
+page{
+  background-color: #a199e9;
+}
+
+.emptyimg{
+  align-content: center;
+  align-items: center;
+  width: 550rpx;
+  margin: -100rpx 100rpx -100rpx 100rpx;
+}
+
+.login_container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  margin: 20rpx;
+  padding: 20rpx;
+  align-items: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  line-height: 50rpx;
+  padding: 20rpx;
+}
+
+.row text {
+  font-size: 35rpx;
+  width: 150rpx;
+}
+
+.row input {
+  font-size: 30rpx;
+}
+
+.submit {
+  font-size: 28rpx;
+  width: 35%;
+  background-color: black;
+  color: #fff;
+}
+
+.protocol_container {
+  text-align: center;
+}
+
+.GPA_container {
+  display: flex;
+  flex-direction: row;
+  margin: 20rpx 20rpx 20rpx 20rpx;
+  padding:30rpx 20rpx 20rpx 20rpx;
+  border-radius: 10rpx;
+  color: white;
+}
+
+.GPA_info {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.GPA {
+  font-size: 50rpx;
+  padding: 20rpx 0 20rpx 0;
+}
+
+.line_column {
+  width: 4rpx;
+  height: 150rpx;
+  background: #fff;
+  margin-top: 15rpx;
+}
+
+.refresh {
+  width: 35rpx;
+  height: 35rpx;
+  position: absolute;
+  top: 20px;
+  left: 670rpx;
+}
+
+.scores_container {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  margin: 0 20rpx 20rpx 20rpx;
+  border-radius: 10rpx;
+  padding: 20rpx 20rpx 20rpx 20rpx;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-bottom: 15rpx;
+}
+
+.arrows {
+  height: 64rpx;
+  width: 64rpx;
+}
+
+.score_info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #f3f2f7;
+  padding: 20rpx 20rpx 20rpx 20rpx;
+  margin-bottom: 10rpx;
+  border-radius: 5rpx;
+  align-items: center;
+}
+
+.tops_score_info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #f3f2f7;
+  padding: 20rpx 20rpx 20rpx 20rpx;
+  margin: 20rpx;
+  border-radius: 5rpx;
+  align-items: center;
+}
+
+.top_course_info{
+   display: flex;
+  flex-direction: column;
+  padding: 10rpx 10rpx 10rpx 10rpx;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+.course_info{
+   display: flex;
+  flex-direction: column;
+  padding: 10rpx 10rpx 10rpx 10rpx;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  padding: 10rpx 10rpx 10rpx 10rpx;
+  align-items: center;
+  text-align: center;
+  width:100%;
+}
+.time_info {
+  display: flex;
+  flex-direction: column;
+  padding: 10rpx 10rpx 10rpx 10rpx;
+  align-items: center;
+  text-align: center;
+  width:100%;
+}
+.info3 {
+  display: flex;
+  flex-direction: column;
+  padding: 10rpx 10rpx 10rpx 10rpx;
+  align-items: center;
+  text-align: center;
+  width:100%;
+}
+.site {
+  display: flex;
+  flex-direction: column;
+  padding: 10rpx 10rpx 10rpx 10rpx;
+  align-items: center;
+  text-align: center;
+  width:100%;
+  margin: 0 -30rpx 0 0;
+}
+.time {
+  display: flex;
+  flex-direction: column;
+  padding: 10rpx 10rpx 10rpx 10rpx;
+  align-items: center;
+  text-align: center;
+  width:100%;
+  /* margin: 0 150rpx 0 0; */
+}
+.position {
+  display: flex;
+  flex-direction: column;
+  padding: 10rpx 10rpx 10rpx 10rpx;
+  align-items: center;
+  text-align: center;
+  width:100%;
+  /* margin: 0 -50rpx 0 0; */
+}
+.score_tip{
+    height:64rpx;
+    width: 558rpx;
+    position: fixed;
+    display: block;
+    bottom:175rpx;
+    margin-left: 92rpx;
+    margin-bottom: -55rpx;
+    z-index: 105;
+}
+.bottom_info {
+  margin: 30rpx auto 20rpx auto;
+}
+
+.share {
+  height: 90rpx;
+  width: 90rpx;
+  position: fixed;
+  bottom: 50rpx;
+  margin-left: 635rpx;
+}
+.shareButton{
+  height: 90rpx;
+  width: 90rpx;
+  position: fixed;
+  bottom: 50rpx;
+  margin-left: 635rpx;
+  border-radius: 70rpx;
+  opacity:0
+}
+.info4 {
+  font-size: 22rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width:100%;
+  position: absolute;
+  margin:40rpx 120rpx;
+}
+.floatWindow{
+  position: fixed;
+  z-index: 100;
+  top: 300rpx;
+  height: 100rpx;
+  width: 250rpx;
+  margin-left: 265rpx;
+  background-color: #5f9790;
+  border-radius: 25rpx;
+  filter: blur(7px);
+}
+.floatText{
+  position: fixed;
+  z-index: 101;
+  top: 315rpx;
+  margin-left: 340rpx;
+  color: white;
+  font-size: 50rpx;
+}
+.headTittle{
+  font-size: 42rpx;
+}

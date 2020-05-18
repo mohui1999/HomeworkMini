@@ -1,0 +1,78 @@
+<!--pages/home/home.wxml-->
+<view wx:if="{{loginOrNot && degree=='BKS'}}" class="login-con">
+  <!-- 切换tab -->
+  <scroll-view scroll-x class="bg-white nav text-center">
+    <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{3}}" wx:key bindtap="tabSelect" data-id="{{index}}">
+      {{tabtext[index]}}
+    </view>
+  </scroll-view>
+
+  <view wx:for="{{homeworkList}}" class="homeworkCard" data-id="{{item.homework_id}}" bindtap="toDoHomework">
+
+    <view class="homework-lift">
+      <view class="homeworkTitle">{{item.title}}</view>
+      <view class="icon-text">
+        <image class="home-icon" src="/icons/homework/teacher.png"></image>
+        <view class="homeworktext">{{item.name}}</view>
+      </view>
+      <view class="icon-text">
+        <image class="home-icon" src="/icons/homework/classname.png"></image>
+        <view class="homeworktext">{{item.classname}}</view>
+      </view>
+      <view class="icon-text">
+        <image class="home-icon" src="/icons/homework/time.png"></image>
+        <view class="homeworktext">{{item.end_time}}</view>
+      </view>
+    </view>
+
+    <view class="homework-right">
+      <view wx:if="{{TabCur==0}}" class="home-action">去完成</view>
+      <view wx:if="{{TabCur==1}}" class="home-action">去查看</view>
+      <view wx:if="{{TabCur==2}}" class="home-action">95</view>
+      <image wx:if="{{TabCur!=2}}" class="icons-action" src="/icons/homework/next.png"></image>
+
+
+    </view>
+
+  </view>
+
+</view>
+
+<!-- <view class="hm-title">批改作业</view> -->
+<view wx:if="{{loginOrNot && degree=='JS'}}" class="login-con">
+  <view wx:for="{{pgList}}" class="homeworkCard" data-id="{{item.homework_id}}" bindtap="toDoHomework">
+
+    <view class="homework-lift">
+      <view class="homeworkTitle">{{item.title}}</view>
+      <view class="icon-text">
+        <image class="home-icon" src="/icons/homework/teacher.png"></image>
+        <view class="homeworktext">{{item.name}}</view>
+      </view>
+      <view class="icon-text">
+        <image class="home-icon" src="/icons/homework/classname.png"></image>
+        <view class="homeworktext">{{item.classname}}</view>
+      </view>
+      <view class="icon-text">
+        <image class="home-icon" src="/icons/homework/time.png"></image>
+        <view class="homeworktext">{{item.end_time}}</view>
+      </view>
+    </view>
+
+    <view wx:if="{{loginOrNot && degree=='JS'}}" class="creat-homework-con">
+      <image class="creat-homework" src="/icons/homework/send.png" bindtap="toCreatHm" data-target="ChooseModal"></image>
+    </view>
+
+    <view class="homework-right">
+      <view wx:if="{{item.pgstatus==1}}" class="home-action-nopg">未批改</view>
+      <view wx:if="{{item.pgstatus==2}}" class="home-action">已批改</view>
+      <image class="icons-action" src="/icons/homework/next.png"></image>
+
+    </view>
+
+  </view>
+</view>
+
+<!-- 未登录提示 -->
+<view wx:if="{{!loginOrNot}}" class="nologin-con">
+  <image class="nologin" src="/icons/homework/nologinin.png"></image>
+</view>

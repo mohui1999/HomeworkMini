@@ -1,0 +1,55 @@
+/* pages/homework/doHomework/doHomework.wxss */
+@import "/plus/wxss/weui.wxss";
+@import "/plus/colorui/main.wxss";
+@import "/plus/colorui/icon.wxss";
+
+
+page{
+  background-color: white
+}
+
+.problem{
+
+  
+  margin: 20rpx;
+  
+  
+}
+
+.problem-title{
+  color: black;
+  font-size: 37rpx;
+  margin: 20rpx;
+
+}
+
+.problem-context{
+  color: #515151;
+  font-size: 30rpx;
+  margin: 20rpx;
+  line-height: 50rpx;
+}
+
+.homeworktext{
+  color: #636363;
+  font-size: 25rpx;
+}
+
+.home-icon{
+  width: 25rpx;
+  height: 25rpx;
+  margin-right: 10rpx;
+}
+
+.icon-text{
+  display:flex;
+  align-items: center;
+  margin: 20rpx;
+}
+
+.hm-but{
+  display: flex;
+  align-content: center;
+  justify-items: center;
+}
+

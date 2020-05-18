@@ -1,0 +1,109 @@
+/* pages/home/home.wxss */
+@import "/plus/wxss/weui.wxss";
+@import "/plus/colorui/main.wxss";
+@import "/plus/colorui/icon.wxss";
+
+page{
+  background-color: #ffffff;
+}
+
+.hm-title{
+  color: black;
+  font-size: 40rpx;
+  margin: 20rpx 40rpx 0 40rpx;
+  background-color: #F1F1F1;
+}
+
+
+.homeworkCard{
+  background-color: white;
+  border-radius: 20rpx;
+  margin: 40rpx 20rpx;
+  padding: 30rpx;
+  display: flex;
+  
+}
+
+.homework-lift{
+  flex: 8
+}
+
+.homework-right{
+  flex: 2;
+  display: flex;
+  align-items: center;
+
+}
+
+.homeworkTitle{
+  color: #515151;
+  font-size: 30rpx;
+  font-weight: 7;
+
+}
+
+.homeworktext{
+  color: #636363;
+  font-size: 25rpx;
+}
+
+.home-icon{
+  width: 25rpx;
+  height: 25rpx;
+  margin-right: 10rpx;
+}
+
+.icon-text{
+  display:flex;
+  align-items: center;
+}
+
+.home-action{
+  color: #1296db;
+  font-size: 30rpx;
+
+}
+
+.home-action-nopg{
+  color: #eb3f39;
+  font-size: 30rpx;
+}
+
+.icons-action{
+  height: 30rpx;
+  width: 30rpx;
+}
+
+.login-con{
+  background-color: #F1F1F1;
+}
+
+.nologin-con{
+  align-items: center;
+  justify-items: center;
+  width: 100%;
+  background-color: white;
+}
+
+.nologin{
+  margin: 300rpx 100rpx 0 100rpx; 
+  width: 550rpx;
+  height: 550rpx;
+}
+/* 布置作业 */
+.creat-homework-con {
+  opacity: 0.9;
+  position: fixed;
+  z-index: 500;
+  bottom: 5%;
+  height: 90rpx;
+  width: 90rpx;
+  margin-left: 600rpx;
+  right: 50rpx;
+}
+
+.creat-homework {
+  height: 90rpx;
+  width: 90rpx;
+  margin: 10rpx 10rpx 10rpx 10rpx;
+}

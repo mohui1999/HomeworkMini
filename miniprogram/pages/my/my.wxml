@@ -1,0 +1,116 @@
+<!--pages/my/my.wxml-->
+<view class="my">
+  <view class="top-con" style="height:{{topHeight}}px">
+    <view class="custom flex_center" style="padding-top:{{statusBarHeight}}px">
+      <view class="custom-text-con">
+        <text class="custom-text"></text>
+      </view>
+    </view>
+    <view class="empty_custom" style="padding-top:{{statusBarHeight}}px"></view>
+
+    <view wx:if="{{!hasUserInfo && canIUse}}" class="first">
+      <view class="user-section">
+        <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="user-button">点击登录</button>
+      </view>
+      <!-- <image class="user-avatar" src="./user-unlogin.png"></image> -->
+      <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" style="background-image: url({{avatarUrl}})" size="default"></button>
+    </view>
+
+    <view wx:else class="first">
+      <view class="user-section">
+        <view class="user-name">{{userInfo.nickName}}</view>
+      </view>
+      <image class="user-avatar" src="{{userInfo.avatarUrl}}"></image>
+    </view>
+  </view>
+
+  <view class="dt-con">
+    <view class="allsend-con" bindtap="toAllHW">
+      <image class="allsend-img" src="/icons/my/allsend.png"></image>
+      <view class="dt-text">我的作业</view>
+    </view>
+    <view class="message-con" bindtap="toClass">
+      <image class="message-img" src="/icons/my/message.png"></image>
+      <view class="dt-text">我的班级</view>
+    </view>
+  </view>
+
+  <view style="height:40rpx"> </view>
+
+  <view class="my-card" wx:if="{{!bindFlag}}" bindtap="onBinding">
+    <image src="/icons/my/identity.png" class="my-pic"></image>
+    <view class="my-text">教务认证</view>
+    <image class="my-icon" src="/icons/my/arrow.png"></image>
+  </view>
+  <view class="my-card" wx:if="{{bindFlag}}" bindtap="onDebinding">
+    <image src="/icons/my/identity.png" class="my-pic"></image>
+    <view class="my-text">教务认证注销</view>
+    <image class="my-icon" src="/icons/my/arrow.png"></image>
+  </view>
+  <!-- <button class="my-card" open-type="share" bindtap="onShare">
+    <image class="my-pic" src="/icons/my/recommend.png"></image>
+    <view class="my-text">推荐给好友</view>
+    <image class="my-icon" src="/icons/my/arrow.png"></image>
+  </button> -->
+
+  <view class="my-card" bindtap="onEnterClass">
+    <image  class="my-pic" src="/icons/my/feedback.png"></image>
+    <view class="my-text">加入班级</view>
+    <image class="my-icon" src="/icons/my/arrow.png"></image>
+  </view>
+
+  <view style="height:30rpx"> </view>
+
+
+  <view class="my-card" bindtap="aboutus">
+    <image class="my-pic" src="/icons/my/about_us.png"></image>
+    <view class="my-text">关于我们</view>
+    <image class="my-icon" src="/icons/my/arrow.png"></image>
+  </view>
+  <view class="my-card" bindtap="crewlist">
+    <image class="my-pic" src="/icons/my/crewlist.png"></image>
+    <view class="my-text">开发者名单</view>
+    <image class="my-icon" src="/icons/my/arrow.png"></image>
+  </view>
+
+
+  <view>
+    <!-- <view class="buttonContainer" open-type="share" style="display:flex" url="" bindtap="onShare">
+      <image class="icon" ></image>
+      <view class="item" style="line-height: 45rpx">推荐给好友</view>
+      <image class="icon2" src="/icons/my/arrow.png"></image>
+    </view>
+    <view class="lightline"></view> -->
+    <!-- <navigator style="display:flex">
+      <button class="buttonContainer" open-type="openGroupProfile" group-id="948563698">
+        <image class="icon" src="/icons/my/feedback.png"></image>
+        <text class="item" style="line-height: 45rpx">意见反馈</text>
+        <image class="icon2" src="/icons/my/arrow.png"></image>
+      </button>
+    </navigator> -->
+    <!-- <navigator style="display:flex">
+      <view class="buttonContainer" bindtap="tofeedback">
+        <image class="icon" src="/icons/my/feedback.png"></image>
+        <text class='item' style="line-height: 45rpx">意见反馈</text>
+        <image class="icon2" src="/icons/my/arrow.png"></image>
+      </view>
+    </navigator> -->
+    <!-- <view class="lightline"></view>
+    <navigator style="display:flex">
+      <view class="buttonContainer" >
+        <image class="icon" ></image>
+        <view class="item" style="line-height: 45rpx">关于我们</view>
+        <image class="icon2" src="/icons/my/arrow.png"></image>
+      </view>
+    </navigator> -->
+
+    <!-- <view class="lightline"></view>
+    <navigator style="display:flex">
+      <button class="buttonContainer" bindtap="crewlist">
+        <image class="icon" src="/icons/my/crewlist.png"></image>
+        <view class="item" style="line-height: 45rpx">开发者名单</view>
+        <image class="icon2" src="/icons/my/arrow.png"></image>
+      </button>
+    </navigator> -->
+  </view>
+</view>

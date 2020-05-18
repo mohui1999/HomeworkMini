@@ -1,0 +1,34 @@
+<!--pages/homework/allHomework/allHomework.wxml-->
+
+<!-- <view class="hm-title-con">
+  <view class="hm-title">全部作业</view>
+</view> -->
+<view class="hm-title">全部作业</view>
+<view wx:for="{{homeworkList}}" class="homeworkCard" data-id="{{item.id}}"  bindtap="toDoHomework">
+
+    <view class="homework-lift">
+      <view class="homeworkTitle">{{item.title}}</view>
+      <view class="icon-text" >
+        <image class="home-icon" src="/icons/homework/teacher.png"></image>
+        <view class="homeworktext">{{item.name}}</view>
+      </view>
+      <view class="icon-text" >
+        <image class="home-icon" src="/icons/homework/classname.png"></image>
+        <view class="homeworktext">{{item.classname}}</view>
+      </view>
+      <view class="icon-text" >
+        <image class="home-icon" src="/icons/homework/time.png"></image>
+        <view class="homeworktext">{{item.time}}</view>
+      </view>
+    </view>
+
+    <view class="homework-right">
+      <view wx:if="{{item.status==1}}" class="home-action">去完成</view>
+      <view wx:if="{{item.status==2}}" class="home-action">去查看</view>
+      <view wx:if="{{item.status==3}}" class="home-action">95</view>
+      <image wx:if="{{item.status!=3}}" class="icons-action" src="/icons/homework/next.png"></image>
+
+
+    </view>
+
+  </view>

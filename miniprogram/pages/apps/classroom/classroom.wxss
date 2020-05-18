@@ -1,0 +1,102 @@
+/* pages/apps/classroom/classroom.wxss */
+page{
+  background-color: #b8dfff;
+}
+
+.emptyimg{
+  align-content: center;
+  align-items: center;
+  width: 550rpx;
+  margin: -100rpx 100rpx -100rpx 100rpx;
+}
+
+.login_container {
+  display: flex;
+  flex-direction: column;
+  background-color:  #d6e3ee;
+  border-radius: 20px;
+  margin: 20rpx;
+  padding: 20rpx;
+  align-items: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  line-height: 50rpx;
+  padding: 20rpx;
+  color: #515151;
+}
+
+.row text {
+  font-size: 35rpx;
+  width: 150rpx;
+}
+
+.row input{
+  font-size: 30rpx;
+}
+
+.submit{
+  font-size: 28rpx;
+  width: 35%;
+  background-color: black;
+  font-weight: 7;
+  color: #FFF;
+}
+
+.protocol_container{
+  text-align: center;
+  margin: 20rpx;
+}
+
+/* 表格代码   */
+.table-con{
+  background-color: white;
+  padding: 10rpx;
+  margin: 15rpx 25rpx;
+  border-radius: 20rpx;
+  
+}
+
+.table{
+  margin: 10px 25rpx 10px 25rpx;
+  border-radius: 20rpx;
+  border-bottom: 1px solid #dadada;
+  border-top: 1px solid #dadada;
+  border-left: 1px solid #dadada;
+  border-right: 1px solid #dadada;
+}
+.tr{
+  width:100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between；
+}
+.th,.td{
+  padding: 10px;
+  border-bottom: 1px solid #dddddd;
+  text-align: center;
+  width: 100%;
+}
+.th2,.td2{
+  flex: 150%;
+}
+.th{
+  font-weight: bolder;
+  background-color: #c5c5c5;
+  font-size: 28rpx;
+  color: #fff;
+}
+.td{
+  font-size: 30rpx;
+  color: #515151;
+}
+
+.heading{
+  color: #515151;
+  font-size: 29rpx;
+  text-align: center;
+  margin-top: 15rpx;
+}

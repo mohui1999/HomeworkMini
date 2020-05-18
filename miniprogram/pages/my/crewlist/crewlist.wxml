@@ -1,0 +1,45 @@
+<!--pages/my/crewlist/crewlist.wxml-->
+<view class="crew-card">
+  <view class="crew-item">
+    <image class="crew-pic" src="/icons/crew/person.png"></image>
+    <view class="crew-text">谢梦磊</view>
+  </view>
+  <view class="crew-item">
+    <image class="crew-pic" src="/icons/crew/task.png"></image>
+    <view class="crew-text">前端</view>
+  </view>
+  <view class="crew-item">
+    <image class="crew-pic" src="/icons/crew/college.png"></image>
+    <view class="crew-text">2017级互联网学院</view>
+  </view>
+</view>
+
+<view class="crew-card">
+  <view class="crew-item">
+    <image class="crew-pic" src="/icons/crew/person.png"></image>
+    <view class="crew-text">刘子哲</view>
+  </view>
+  <view class="crew-item">
+    <image class="crew-pic" src="/icons/crew/task.png"></image>
+    <view class="crew-text">后端</view>
+  </view>
+  <view class="crew-item">
+    <image class="crew-pic" src="/icons/crew/college.png"></image>
+    <view class="crew-text">2016级互联网学院</view>
+  </view>
+</view>
+
+<view class="crew-card">
+  <view class="crew-item">
+    <image class="crew-pic" src="/icons/crew/person.png"></image>
+    <view class="crew-text">吴思娴</view>
+  </view>
+  <view class="crew-item">
+    <image class="crew-pic" src="/icons/crew/task.png"></image>
+    <view class="crew-text">策划</view>
+  </view>
+  <view class="crew-item">
+    <image class="crew-pic" src="/icons/crew/college.png"></image>
+    <view class="crew-text">2017级新闻与传播学院</view>
+  </view>
+</view>

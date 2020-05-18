@@ -1,0 +1,91 @@
+/* pages/my/login/login.wxss */
+@import '/plus/wxss/weui.wxss';
+page{
+    background-color: white;
+}
+
+
+.jw-title{
+  background-color: white;
+  font-size: 60rpx;
+  text-align: center;
+  align-items: center;
+  padding-top: 160rpx;
+  padding-bottom: 180rpx;
+  letter-spacing: 8rpx;
+  font-weight: lighter;
+  
+}
+
+.headLine{
+    display: flex;
+    flex-direction: row;
+    height: 115rpx;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background-color: white;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.searchIcon{
+    height: 50rpx;
+    width: 50rpx;
+    margin-left: 20rpx;
+    margin-top: 50rpx;
+}
+
+.item{
+    height: 90rpx;
+    width: 100%;
+    display: flex;
+    background-color: white;
+    line-height: 90rpx;
+    margin-top: 1rpx;
+}
+
+.textContainer{
+    margin-left: 50rpx;
+    font-size: 32rpx;
+    width:125rpx;
+}
+
+.inputContainer{
+  margin-left: 50rpx;
+  height:90rpx;
+    
+}
+
+.showImg{
+  height: 70rpx;
+  width: 70rpx;
+  margin: 10rpx 10rpx 20rpx 0;
+  right: 10rpx;
+}
+
+.jw-radios{
+  margin: 100rpx 50rpx;
+  align-items: center;
+  display: flex
+}
+
+.jw-radio{
+  flex: 1;
+  align-items: center;
+  text-align: center;
+}
+
+.buttonContainer{
+    height: 80rpx;
+    width: 200rpx;
+    margin-left: 275rpx;
+    margin-top: 200rpx;
+    background-color:#000;
+    color: white;
+    font-size: 37rpx;
+    font-weight: bold;
+    border: 1px solid #cdcdcd;
+    border-radius: 10rpx;
+    text-align: center;
+    line-height: 77rpx;
+}
