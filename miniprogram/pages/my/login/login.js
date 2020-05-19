@@ -275,22 +275,22 @@ Page({
                 console.log("wx");
                 console.log(getApp().globalData.userInfo.avatarUrl)
                 if (that.data.degree == "BKS") {
-                  wx.request({
-                    url: 'https://andatong.top/wxapp/create_student',
-                    data: {
-                      Sno: wx.getStorageSync('studentID'),
-                      name: getApp().globalData.userInfo.nickName,
-                      userAvatar: getApp().globalData.userInfo.avatarUrl
-                    },
-                    method: 'POST',
-                    header: {
-                      'content-type': 'application/x-www-form-urlencoded'
-                    },
-                    success: function(e) {
-                      console.log(e)
+                  // wx.request({
+                  //   url: 'https://andatong.top/wxapp/create_student',
+                  //   data: {
+                  //     Sno: wx.getStorageSync('studentID'),
+                  //     name: getApp().globalData.userInfo.nickName,
+                  //     userAvatar: getApp().globalData.userInfo.avatarUrl
+                  //   },
+                  //   method: 'POST',
+                  //   header: {
+                  //     'content-type': 'application/x-www-form-urlencoded'
+                  //   },
+                  //   success: function(e) {
+                  //     console.log(e)
 
-                    },
-                  })
+                  //   },
+                  // })
                 }
 
 

@@ -30,14 +30,16 @@
   </view>
 
 </view>
+<view class="problem">
+  <view class="cu-form-group margin-top">
+    <view class="title">分数</view>
+    <input placeholder="0-100" maxlength="3" type="number" bindinput="numberareaAInput"></input>
+  </view>
+  <view class="cu-form-group margin-top">
+    <textarea maxlength="-1" style="height:400rpx" disabled="{{modalName!=null}}" bindinput="textareaAInput" placeholder="此处输入你的评语"></textarea>
+  </view>
+</view>
 
-<view class="cu-form-group margin-top">
-  <view class="title">分数</view>
-  <input placeholder="0-100" maxlength="3" type="number" bindinput="numberareaAInput"></input>
-</view>
-<view class="cu-form-group margin-top">
-  <textarea maxlength="-1" style="height:400rpx" disabled="{{modalName!=null}}" bindinput="textareaAInput" placeholder="此处输入你的评语"></textarea>
-</view>
 
 <view class="hm-but">
   <button class="cu-btn bg-orange round lg shadow" bindtap="submitscore" data-remarktext="{{textareaAValue}}" data-score="{{score}}">提 交</button>

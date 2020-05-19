@@ -6,6 +6,7 @@ Page({
    */
   data: {
     classnumber: '',
+    name:'',
   },
 
   /**
@@ -20,9 +21,14 @@ Page({
       classnumber: e.detail.value
     })
   },
-
+  nameareaAInput(e) {
+    this.setData({
+      name: e.detail.value
+    })
+  },
   enter(e) {
-    if (this.data.classnumber != '') {
+    var that =this;
+    if (this.data.classnumber != ''&& that.data.name!='') {
       wx.request({
         //通过接口获取数据
         url: 'https://andatong.top/wxapp/class_api',
@@ -37,12 +43,30 @@ Page({
         },
         success: function(res) {
           console.log(res);
+          console.log(getApp().globalData.userInfo.avatarUrl)
           if(res.data.status=="success"){
-            wx.showModal({
-              title: '成功',
-              content: '加入班级成功',
-              showCancel:false,
+            wx.request({
+              url: 'https://andatong.top/wxapp/create_student',
+              data: {
+                Sno: wx.getStorageSync('studentID'),
+                name: that.data.name,
+                userAvatar: getApp().globalData.userInfo.avatarUrl
+              },
+              method: 'POST',
+              header: {
+                'content-type': 'application/x-www-form-urlencoded'
+              },
+              success: function (e) {
+                console.log(e)
+                wx.showModal({
+                  title: '成功',
+                  content: '加入班级成功',
+                  showCancel: false,
+                })
+
+              },
             })
+            
           }else{
             wx.showModal({
               title: '提示',

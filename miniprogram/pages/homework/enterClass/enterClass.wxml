@@ -5,6 +5,10 @@
   <view class="title">班级码</view>
   <input placeholder="输入班级码" maxlength="20" bindinput="numberareaAInput"></input>
 </view>
+<view class="cu-form-group margin-top">
+  <view class="title">真实姓名</view>
+  <input placeholder="输入你的真实姓名" maxlength="6" bindinput="nameareaAInput"></input>
+</view>
 
 <view style="height:200rpx;"></view>
 

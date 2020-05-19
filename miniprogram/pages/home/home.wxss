@@ -47,6 +47,11 @@ page{
   font-size: 25rpx;
 }
 
+.homeworktext2{
+  color: #d15454;
+  font-size: 25rpx;
+}
+
 .home-icon{
   width: 25rpx;
   height: 25rpx;

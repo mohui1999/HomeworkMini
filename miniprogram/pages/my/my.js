@@ -146,10 +146,19 @@ Page({
 
   onEnterClass(e){
     if (wx.getStorageSync("studentPW")){
-      wx.navigateTo({
-        //实现跳转的函数，url附带跳转时传送的数据
-        url: '/pages/homework/enterClass/enterClass',
-      })
+      if (wx.getStorageSync("degree")=='BKS'){
+        wx.navigateTo({
+          //实现跳转的函数，url附带跳转时传送的数据
+          url: '/pages/homework/enterClass/enterClass',
+        })
+      } else if (wx.getStorageSync("degree") == 'JS'){
+        wx.showModal({
+          title: '提示',
+          content: '教师用户请联系管理员创建班级',
+          showCancel:false,
+        })
+      }
+     
     }else{
       wx.showModal({
         title: '提示',
@@ -202,7 +211,7 @@ Page({
   aboutus: function () { //关于我们
     wx.showModal({
       title: '关于我们',
-      content: "【版权所有】\r\nBrainPicker Lab.\r\n\r\n【合作联系】\r\n 15056998503（微信）",
+      content: "【版权所有】\r\nBrainPicker Lab.\r\n\r\n【管理员】\r\n 15056998503（微信）",
       showCancel: false,
       success: function (res) {
         if (res.confirm) { }

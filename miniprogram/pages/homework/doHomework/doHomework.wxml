@@ -16,8 +16,21 @@
     <image class="home-icon" src="/icons/homework/time.png"></image>
     <view class="homeworktext">{{homeworkDetial.end_time}}</view>
   </view>
+   <view class="icon-text" wx:if="{{homeworkDetial.note!=''}}">
+    <image class="home-icon" src=""></image>
+    <view class="homeworktext2">{{homeworkDetial.note}}</view>
+  </view>
   <view class=" solid{{size?'s':''}}-bottom margin-top"></view>
 </view>
+
+<!-- 分数区域 -->
+ <view class="problem" wx:if="{{homeworkDetial.student_answers[0].grade!='无'}}">
+    <view class="problem-title">分数：{{homeworkDetial.student_answers[0].grade}}</view>
+    <view class="problem-title">评语</view>
+    <view class="problem-context">{{homeworkDetial.student_answers[0].content_from_teacher}}</view>
+
+    <view class=" solid{{size?'s':''}}-bottom margin-top"></view>
+  </view>
 
 
 <!-- 已经回答的答案区域 -->
@@ -30,10 +43,9 @@
   </view>
 </view>
 
-
 <!-- 回答区域 -->
 
-<view class="problem">
+<view class="problem" wx:if="{{homeworkDetial.note!='已到截止时间'}}">
   <view class="problem-title">作答区</view>
   <view class="cu-bar bg-white margin-top">
     <view class="action">
@@ -45,7 +57,7 @@
   </view>
   <view class="cu-form-group">
     <view class="grid col-3 grid-square flex-sub">
-      <view class="bg-img" wx:for="{{imgList}}" wx:key="index" data-index="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+      <view class="bg-img" wx:for="{{imgList}}" data-index="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
         <image src='{{imgList[index]}}' mode='aspectFill'></image>
         <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
           <text class="cuIcon-close"></text>

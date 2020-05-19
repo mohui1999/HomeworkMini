@@ -175,7 +175,7 @@ Page({
         success: function(res) {
           console.log(res);
           if (res.statusCode == 200 && res.data.status == "success") {
-            wx.setStorageSync('autoRefreshFlga', "1");
+            wx.setStorageSync('autoRefreshFlag', "1");
             wx.showToast({
               title: '提交成功',
             })

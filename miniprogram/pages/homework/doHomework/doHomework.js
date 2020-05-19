@@ -46,6 +46,49 @@ Page({
       },
       success: function(res) {
         console.log(res);
+        
+        //时间处理，截止时间
+        var homeworkDetial = res.data;
+        var time = homeworkDetial.end_time;
+        if (time!="无截止时间"){
+          var yy = parseInt(time.substring(0, 4));
+          console.log(yy)
+          var mm = parseInt(time.substring(5, 8)) - 1;
+          console.log(mm)
+          var dd = parseInt(time.substring(8, 10));
+          console.log(dd)
+          //var hh = parseInt(time.substring(time.indexOf("(") + 1, time.indexOf(":")));
+          //var minute = parseInt(time.substring(time.indexOf(":") + 1, time.indexOf("-")));
+          var hh = parseInt(time.substring(11, 13));
+          var minute = parseInt(time.substring(14, 16));
+          console.log(hh + " " + minute)
+          if (mm)
+            var targetTime = (new Date(yy, mm, dd, hh, minute, 0)).getTime();
+          else
+            var targetTime = (new Date(yy, mm, dd, hh, minute, 0)).getTime();
+          var currentTime = Date.now();
+          var offsetTime = targetTime - currentTime;
+          console.log(targetTime)
+          console.log(currentTime)
+          console.log(offsetTime)
+          var note="";
+          console.log(offsetTime < 86400000)
+          console.log(offsetTime > 0)
+          if (offsetTime <= 345600000 && offsetTime >= 86400000) {
+            var days = parseInt(offsetTime / 86400000);
+            note="离截止日期还有" + days + "天";
+          } else if (offsetTime > 0 && offsetTime < 86400000){
+            var hours = parseInt(offsetTime / 3600000)
+            console.log(hours)
+            note="离截止时间还有"+hours+"小时";
+          }else if(offsetTime<=0){
+            note="已到截止时间";
+          }
+          console.log(note)
+          homeworkDetial.note = note;
+        }
+
+
         that.setData({
           homeworkDetial: res.data,
         })

@@ -182,6 +182,7 @@ Page({
             var list = that.data.examroom;
             console.log(list)
             for (var aa = 0; aa < list.length; aa++) {
+              //时间处理
               var time = list[aa].KSSJ;
               var yy = parseInt(time.substring(0, time.indexOf("年")));
               var mm = parseInt(time.substring(5, time.indexOf("月"))) - 1;

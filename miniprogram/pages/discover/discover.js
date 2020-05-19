@@ -8,8 +8,8 @@ Page({
     cardCur: 0,
 
     page: 1,
-    size:1,
-    tab:0,
+    size: 1,
+    tab: 0,
     newsList: [],
     is_bottom: false,
     is_error: false,
@@ -18,58 +18,50 @@ Page({
     swiperList: [{
       id: 0,
       type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
-    }, {
+      url: 'http://xiemenglei.cn/wp-content/uploads/2020/05/A46DC1CBEF10099B.jpg'
+    }, 
+    {
       id: 1,
       type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84001.jpg',
-    }, {
+      url: 'http://xiemenglei.cn/wp-content/uploads/2020/05/BF27C40D2554D65945C90787D8E3F8E7.jpg',
+    },
+    {
       id: 2,
       type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg'
-    }, {
+      url: 'http://xiemenglei.cn/wp-content/uploads/2020/05/A612C42F4D19C3DDACF4EF0B59E28AE3.jpg'
+    },
+     {
       id: 3,
       type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg'
-    }, {
-      id: 4,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big25011.jpg'
-    }, {
-      id: 5,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21016.jpg'
-    }, {
-      id: 6,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
-    }],
+       url: 'http://xiemenglei.cn/wp-content/uploads/2020/05/A566404B99BA387F1A2EC112B0A0687B.jpg'
+    },
+  
+    ],
 
-    apps_study: [
-    {
-      app_icon: "/icons/discover/classroom.png",
-      app_name: "空教室",
-      app_type: 0,
-      app_url: "/pages/apps/classroom/classroom"
-    },
-    {
-      app_icon: "/icons/discover/score.png",
-      app_name: "成绩单",
-      app_type: 0,
-      app_url: "/pages/apps/newscore/newscore"
-    }, {
-      app_icon: "/icons/discover/examination_room.png",
-      app_name: "考场查询",
-      app_type: 0,
-      app_url: "/pages/apps/examroom/examroom"
-    },
-   
-    // {
-    //   app_icon: "",
-    //   app_name: "",
-    //   app_type: 0,
-    //   app_url: ""
-    // },
+    apps_study: [{
+        app_icon: "/icons/discover/classroom.png",
+        app_name: "空教室",
+        app_type: 0,
+        app_url: "/pages/apps/classroom/classroom"
+      },
+      {
+        app_icon: "/icons/discover/score.png",
+        app_name: "成绩单",
+        app_type: 0,
+        app_url: "/pages/apps/newscore/newscore"
+      }, {
+        app_icon: "/icons/discover/examination_room.png",
+        app_name: "考场查询",
+        app_type: 0,
+        app_url: "/pages/apps/examroom/examroom"
+      },
+
+      // {
+      //   app_icon: "",
+      //   app_name: "",
+      //   app_type: 0,
+      //   app_url: ""
+      // },
     ],
 
   },
@@ -77,7 +69,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     var that = this;
     if (wx.getStorageSync('studentPW') == "") {
       that.setData({
@@ -87,7 +79,7 @@ Page({
     } else {
       that.setData({
         loginOrNot: true,
-        
+
 
       })
     }
@@ -95,7 +87,7 @@ Page({
     that.getNews();
   },
 
-  getNews: function () {
+  getNews: function() {
     var page = this.data.page;
     var that = this;
     if (that.data.showADflag == 0) {
@@ -117,7 +109,7 @@ Page({
       method: 'GET',
       dataType: 'json',
       responseType: 'text',
-      success: function (res) {
+      success: function(res) {
         if (res.data[0] != undefined) {
           page = page + 1;
           var addData = res.data;
@@ -158,8 +150,8 @@ Page({
           })
         }
       },
-      fail: function (res) { },
-      complete: function (res) {
+      fail: function(res) {},
+      complete: function(res) {
 
         that.setData({
           loadModal: false
@@ -171,7 +163,7 @@ Page({
   },
 
   //文章展开收起
-  excerpt_change: function (e) {
+  excerpt_change: function(e) {
     var that = this;
     console.log(e)
     var index = e.currentTarget.dataset.index;
@@ -252,31 +244,31 @@ Page({
     }
   },
 
-  toStudyApp: function (e) {
-    var that=this;
+  toStudyApp: function(e) {
+    var that = this;
     var id = e.currentTarget.dataset.id;
     var url = this.data.apps_study[id].app_url
     if (this.data.apps_study[id].app_type == 0) {
       // 跳内部小程序
-      if (that.data.loginOrNot==false){
+      if (that.data.loginOrNot == false) {
         wx.showModal({
           title: '未登录',
           content: '请前往我的界面登录并教务认证',
         })
-      } else if (wx.getStorageSync("degree")=="JS"){
+      } else if (wx.getStorageSync("degree") == "JS") {
         wx.showModal({
           title: '提示',
           content: '暂不支持教师用户使用此功能',
         })
-      }else{
+      } else {
         wx.navigateTo({
           url: url,
-          success: function (res) { },
-          fail: function (res) { },
-          complete: function (res) { },
+          success: function(res) {},
+          fail: function(res) {},
+          complete: function(res) {},
         })
       }
-      
+
     } else if (this.data.apps_study[id].app_type == 1) {
       // 跳外部小程序
       // wx.navigateToMiniProgram({
@@ -304,7 +296,7 @@ Page({
     }
   },
 
-  previewImg: function (e) {
+  previewImg: function(e) {
     var that = this;
     console.log(e);
 
@@ -319,9 +311,9 @@ Page({
       wx: wx.previewImage({
         current: image,
         urls: imgurl,
-        success: function (res) { },
-        fail: function (res) { },
-        complete: function (res) { },
+        success: function(res) {},
+        fail: function(res) {},
+        complete: function(res) {},
       })
     } else {
       var news_id = e.currentTarget.dataset.newsid;
@@ -330,9 +322,9 @@ Page({
       wx: wx.previewImage({
         current: image[id],
         urls: image,
-        success: function (res) { },
-        fail: function (res) { },
-        complete: function (res) { },
+        success: function(res) {},
+        fail: function(res) {},
+        complete: function(res) {},
       })
     }
 
@@ -341,42 +333,42 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-    
+  onPullDownRefresh: function() {
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
     // // 上滑加载更多新闻数据
     this.getNews();
   },
@@ -384,7 +376,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

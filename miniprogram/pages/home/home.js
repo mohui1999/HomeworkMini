@@ -31,21 +31,21 @@ Page({
     } else {
       that.setData({
         loginOrNot: true,
-        degree:wx.getStorageSync("degree")
+        degree: wx.getStorageSync("degree")
 
       })
       that.getList();
     }
 
-    
+
   },
 
-  getList(e){
+  getList(e) {
     var that = this;
     wx.showLoading({
       title: '加载中……',
     })
-    if(that.data.degree=="BKS"){
+    if (that.data.degree == "BKS") {
       //学生
       if (that.data.TabCur == 0) {
         var status = "待完成"
@@ -67,20 +67,64 @@ Page({
         header: {
           'content-type': 'application/json'
         },
-        success: function (res) {
+        success: function(res) {
           console.log(res);
           // var new_mail = res.data; //新获得的数据
           // var old_mail = that.data.mail; //之前已经获得的数据
           // var arr_mail = old_mail.concat(new_mail); //新旧数据合并
+          var homeworkList = res.data.homework_lst;
+          var x;
+          for (x in homeworkList) {
+            //时间处理，截止时间
+            var time = homeworkList[x].end_time;
+            console.log(time)
+            var note = "";
+            if (time != "无截止时间") {
+              var yy = parseInt(time.substring(0, 4));
+              console.log(yy)
+              var mm = parseInt(time.substring(5, 8)) - 1;
+              console.log(mm)
+              var dd = parseInt(time.substring(8, 10));
+              console.log(dd)
+              //var hh = parseInt(time.substring(time.indexOf("(") + 1, time.indexOf(":")));
+              //var minute = parseInt(time.substring(time.indexOf(":") + 1, time.indexOf("-")));
+              var hh = parseInt(time.substring(11, 13));
+              var minute = parseInt(time.substring(14, 16));
+              console.log(hh + " " + minute)
+              if (mm)
+                var targetTime = (new Date(yy, mm, dd, hh, minute, 0)).getTime();
+              else
+                var targetTime = (new Date(yy, mm, dd, hh, minute, 0)).getTime();
+              var currentTime = Date.now();
+              var offsetTime = targetTime - currentTime;
+              console.log(targetTime)
+              console.log(currentTime)
+              console.log(offsetTime)
+              
+              console.log(offsetTime < 86400000)
+              console.log(offsetTime > 0)
+              if (offsetTime <= 345600000 && offsetTime >= 86400000) {
+                var days = parseInt(offsetTime / 86400000);
+                note = "离截止日期还有" + days + "天";
+              } else if (offsetTime > 0 && offsetTime < 86400000) {
+                var hours = parseInt(offsetTime / 3600000)
+                console.log(hours)
+                note = "离截止时间还有" + hours + "小时";
+              } else if (offsetTime <= 0) {
+                note = "已到截止时间";
+              }
+            }
+            homeworkList[x].note=note;
+          }
           that.setData({
-            homeworkList: res.data.homework_lst,
+            homeworkList: homeworkList,
           })
         },
-        complete:function(){
+        complete: function() {
           wx.hideLoading()
         }
       })
-    }else if(that.data.degree=="JS"){
+    } else if (that.data.degree == "JS") {
       //教师
       var tno = wx.getStorageSync("studentID")
       wx.request({
@@ -93,14 +137,14 @@ Page({
         header: {
           'content-type': 'application/json'
         },
-        success: function (res) {
+        success: function(res) {
           console.log(res);
 
           that.setData({
             pgList: res.data.homework_lst,
           })
         },
-        complete: function () {
+        complete: function() {
           wx.hideLoading()
         }
       })
@@ -118,34 +162,34 @@ Page({
   },
 
   // 跳转作业
-  toDoHomework(e){
+  toDoHomework(e) {
     console.log(e);
-    var id=e.currentTarget.dataset.id
-    if(this.data.degree=="BKS"){
+    var id = e.currentTarget.dataset.id
+    if (this.data.degree == "BKS") {
       wx.navigateTo({
         url: '/pages/homework/doHomework/doHomework?id=' + id,
-        success: function (res) { },
-        fail: function (res) { },
-        complete: function (res) { },
+        success: function(res) {},
+        fail: function(res) {},
+        complete: function(res) {},
       })
-    }else if(this.data.degree=="JS"){
+    } else if (this.data.degree == "JS") {
       wx.navigateTo({
         url: '/pages/homework/teaHomework/teaHomework?id=' + id,
-        success: function (res) { },
-        fail: function (res) { },
-        complete: function (res) { },
+        success: function(res) {},
+        fail: function(res) {},
+        complete: function(res) {},
       })
-      
+
     }
 
   },
 
-  toCreatHm(e){
+  toCreatHm(e) {
     wx.navigateTo({
       url: '/pages/homework/creHomework/creHomework',
-      success: function (res) { },
-      fail: function (res) { },
-      complete: function (res) { },
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
     })
   },
 
@@ -153,7 +197,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    
+
   },
 
   /**

@@ -2,7 +2,7 @@
 <view wx:if="{{loginOrNot && degree=='BKS'}}" class="login-con">
   <!-- 切换tab -->
   <scroll-view scroll-x class="bg-white nav text-center">
-    <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{3}}" wx:key bindtap="tabSelect" data-id="{{index}}">
+    <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{3}}" bindtap="tabSelect" data-id="{{index}}">
       {{tabtext[index]}}
     </view>
   </scroll-view>
@@ -22,6 +22,10 @@
       <view class="icon-text">
         <image class="home-icon" src="/icons/homework/time.png"></image>
         <view class="homeworktext">{{item.end_time}}</view>
+      </view>
+      <view class="icon-text" wx:if="{{item.note!=''&&TabCur!=2}}">
+        <image class="home-icon" src=""></image>
+        <view class="homeworktext2">{{item.note}}</view>
       </view>
     </view>
 
@@ -51,20 +55,16 @@
       <view class="homeworkTitle">{{item.title}}</view>
       <view class="icon-text">
         <image class="home-icon" src="/icons/homework/teacher.png"></image>
-        <view class="homeworktext">{{item.name}}</view>
+        <view class="homeworktext">{{item.teacher_name}}</view>
       </view>
       <view class="icon-text">
         <image class="home-icon" src="/icons/homework/classname.png"></image>
-        <view class="homeworktext">{{item.classname}}</view>
+        <view class="homeworktext">{{item.class_name}}</view>
       </view>
       <view class="icon-text">
         <image class="home-icon" src="/icons/homework/time.png"></image>
         <view class="homeworktext">{{item.end_time}}</view>
       </view>
-    </view>
-
-    <view wx:if="{{loginOrNot && degree=='JS'}}" class="creat-homework-con">
-      <image class="creat-homework" src="/icons/homework/send.png" bindtap="toCreatHm" data-target="ChooseModal"></image>
     </view>
 
     <!-- <view class="homework-right">
@@ -77,6 +77,10 @@
   <view wx:if="{{pgList==''}}" class="bottom">
     <text>———— 暂时没有作业哦 ————</text>
   </view>
+  
+  <view wx:if="{{loginOrNot && degree=='JS'}}" class="creat-homework-con">
+      <image class="creat-homework" src="/icons/homework/send.png" bindtap="toCreatHm"></image>
+    </view>
 </view>
 
 <!-- 未登录提示 -->
